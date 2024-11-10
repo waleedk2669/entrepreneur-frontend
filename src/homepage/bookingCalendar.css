@@ -1,0 +1,62 @@
+/* BookingCalendar.css */
+
+/* Container for the DatePicker */
+.date-picker-container {
+    margin: 20px auto;
+    width: fit-content;
+    height: 35rem;
+    text-align: center;
+    background: linear-gradient(45deg, #5b7895, #002b36);
+    padding: 30px;
+    padding-bottom: 8rem;
+    color:white;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.rbc-off-range-bg {
+    background-color: rgba(255, 255, 255, 0.313);
+}
+
+.rbc-day-bg {
+    border-left: 3px solid #fdfdfd;
+}
+/* Hover and Focus Effects for Input */
+.rbc-today {
+    background-color: rgb(255, 130, 130);
+}
+
+/* DatePicker Popper */
+.react-datepicker-popper {
+    z-index: 1000;
+}
+
+.rbc-toolbar button  {
+    color:rgb(6, 6, 4);
+    background-color: rgb(250, 247, 247);
+}
+
+
+/* Calendar Day Styles */
+
+
+/* Selected Day */
+
+
+/*  */
+
+/* Month and Year Dropdowns */
+
+
+/* Dropdown Options */
+
+
+/* Hover Effect for Dropdown Options */
+
+/* Disabled Days */
+.react-datepicker__day--disabled {
+    color: #bbb;
+    pointer-events: none;
+    opacity: 0.6;
+}

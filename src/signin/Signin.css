@@ -1,0 +1,75 @@
+.signin {
+    /* margin: 50px auto; */
+    border-radius: 10px;
+    background-color: #9eeb46;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100vw;
+    height: 100vh;
+    /* display: flex; */
+    background-image: url('/signupsis.webp');  /* Path to the image */
+    background-size: cover;      /* Ensures the image covers the entire background */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; 
+
+}
+
+
+.signin form {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.4rem;
+    width: 30%;
+    border-radius: 45px;
+    margin-left: 0rem;
+    background: linear-gradient(45deg, rgba(4, 0, 255, 0.687), rgba(255, 0, 0, 0.409), rgba(0, 0, 0, 0.334), rgba(128, 0, 128, 0.398), rgba(255, 192, 203, 0.465));
+    
+}
+
+.signin label {
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+}
+
+.signin input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.signin .error {
+    color: red;
+    margin-bottom: 10px;
+}
+
+.signin button {
+    padding: 10px;
+    font-size: 1.4rem;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 40%;
+    margin: auto;
+    cursor: pointer;
+
+}
+
+.signin button:hover {
+    background-color: #004494;
+}
+
+.signup-link {
+    margin-top: 15px;
+    font-size: 0.9rem;
+}
+
+.signup-link a {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}

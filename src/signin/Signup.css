@@ -1,0 +1,172 @@
+.signup {
+    /* margin: 50px auto; */
+    border-radius: 10px;
+    background-color: #9eeb46;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100vw;
+    height: 100vh;
+    display: column;
+    background-image: url('/signup.webp');  /* Path to the image */
+    background-size: cover;      /* Ensures the image covers the entire background */
+    background-position: top center; /* Positions the image towards the top */
+    background-repeat: no-repeat; 
+    background-attachment: fixed; /* Makes the background image fixed for a better full-screen effect */
+
+
+}
+
+.signup h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    margin-top: 20rem;
+}
+
+.signup form {
+    display: flex;
+    flex-direction: column;
+}
+
+.signup label {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.signup input, .signup select {
+    padding: 10px;
+    font-size: 1rem;
+    background-color: pink;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    width: 50%;
+
+}
+
+.signup .error {
+    color: red;
+    margin-bottom: 10px;
+}
+
+.signup .success {
+    color: green;
+    margin-bottom: 10px;
+}
+
+.signup button {
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 50%;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.signup button:hover {
+    background-color: #004494;
+}
+
+.signin-link {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    background-color: rgb(2, 2, 2);
+    width: fit-content;
+    margin: auto;
+    padding: 15px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.signin-link a {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+.signin-link a:hover {
+    text-decoration: underline;
+}
+.password-strength {
+    display: flex;
+    align-items: center;
+    margin: auto;
+}
+
+.strength-bar {
+    width: 50rem;
+    height: 10px;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    margin: auto;
+    margin-bottom: 2rem;
+    background-color: rgba(255, 255, 255, 0.328);
+
+}
+
+.strength-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.strength-1::after { width: 20%; background-color: red; }
+.strength-2::after { width: 40%; background-color: orange; }
+.strength-3::after { width: 60%; background-color: yellow; }
+.strength-4::after { width: 80%; background-color: lightgreen; }
+.strength-5::after { width: 100%; background-color: rgb(63, 238, 0); }
+
+.password-strength span {
+    font-size: 1rem;
+    color: #555;
+    font-size: 1.2rem;
+    padding: 5px;
+    border-radius: 25px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: white;
+    
+}
+
+.password-requirements {
+    margin-bottom: 15px;
+    margin: auto;
+    padding:5px;
+    border-radius: 25px;
+    display: flex;
+    background-color: rgb(0, 0, 0);
+    font-weight: 700;
+
+}
+
+.password-requirements p {
+    margin-bottom: 5px;
+    color: #ffffff;
+    font-weight: bold;
+    
+}
+
+.password-requirements ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.password-requirements li {
+    display: inline;
+    padding: 5px;
+    align-items: center;
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+
+.password-requirements li.valid { color: rgb(3, 175, 3); }
+.password-requirements li.invalid { color: red; }
+
+
+

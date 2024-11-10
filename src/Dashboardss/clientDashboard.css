@@ -1,0 +1,52 @@
+.client-dashboard {
+    padding: 20px;
+    background-image: url('/client-dashboard4.webp'); /* Update this path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+    font-family: 'Arial', sans-serif; /* Clean and modern font */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  }
+  
+.dashboard-summary {
+    margin-bottom: 20px;
+    width: fit-content;
+    background-color: rgba(0, 0, 0, 0.327);
+    /* display: inline; */
+    margin: auto;
+    font-size: 1.3rem;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.upcoming-bookings {
+    margin-bottom: 20px;
+    width: fit-content;
+    background-color: rgba(0, 0, 0, 0.327);
+    /* display: inline; */
+    margin: auto;
+    font-size: 1.3rem;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.bookings-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.bookings-table th,
+.bookings-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.bookings-table th {
+    background-color: #f4f4f4;
+    border-radius: 40px;
+}

@@ -1,0 +1,49 @@
+/* Navbar container */
+.navbar {
+    display: flex;  /* Display items inline */
+    justify-content: center;  /* Center navbar items */
+    align-items: left;
+    padding: 15px 30px;
+    color:white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Subtle shadow */
+
+}
+
+/* List styling */
+.navbar ul {
+    color:white;
+    display: flex;  /* Display items inline */
+    gap: 20px;  /* Space between links */
+    padding: 0;
+    margin: 0;
+}
+.navbar li {
+    display: inline-flex;  /* Display items inline */
+    width: fit-content;
+    max-height: fit-content;
+
+}
+
+/* Link styling */
+.navbar a {
+    text-decoration: none;  /* Remove underline */
+    font-size: 1.1rem;
+    display: flex;  /* Display items inline */
+    padding: 8px 16px;  /* Add padding around links */
+    border-radius: 5px;
+    background-color: rgba(212, 109, 109, 0.975);  /* Lighten on hover */
+    transition: background-color 0.3s ease, transform 0.2s ease;  /* Smooth transitions */
+    
+}
+
+/* Hover and active styling */
+.navbar a:hover {
+    background-color: rgba(255, 255, 255, 0.2);  /* Lighten on hover */
+    transform: scale(1.05);  /* Slight scaling effect */
+}
+
+.active {
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.3);  /* Highlight active link */
+    border-bottom: 2px solid white;  /* Bottom border for active */
+}
