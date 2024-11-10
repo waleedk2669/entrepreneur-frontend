@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./clientDashboard.css";
 import Navbar from "../homepage/Navbar";
+import { useAuth } from "../AuthContext";
 
 const ClientDashboard = () => {
+  const { user, token, signOut } = useAuth();  // Using AuthContext to access the token and signOut
   const [overview, setOverview] = useState({});
   const [regularBookings, setRegularBookings] = useState([]);
   const [engineeringBookings, setEngineeringBookings] = useState([]);
@@ -10,32 +12,28 @@ const ClientDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [rating, setRating] = useState({});
   const [clientBookings, setClientBookings] = useState([]);
-  const token = localStorage.getItem("token");
 
-  // Get token from localStorage
-
+  // If no token, sign out immediately
   useEffect(() => {
-    const fetchData = async () => {
-      if (!token) {
-        setError("No token found. Please sign in.");
-        setLoading(false);
-        return;
-      }
-  
-      try {
+    if (!token) {
+      signOut();  // Log out if no token is available
+      return;
+    }
 
+    const fetchData = async () => {
+      try {
         const response = await fetch(
-            `http://localhost:5002/api/client-dashboard`,
-            {
+          `http://localhost:5002/api/client-dashboard`,
+          {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
               "Authorization": `Bearer ${token}`, // Pass the token in the Authorization header
             },
           });
-  
+
         const data = await response.json();
-  
+
         if (response.ok) {
           setOverview(data.overview);
           setRegularBookings(data.regular_bookings || []);
@@ -44,23 +42,20 @@ const ClientDashboard = () => {
             ...data.regular_bookings,
             ...data.engineering_bookings,
           ]);
-  
+
           setLoading(false);
         } else {
-          console.error("Error:", data.error);
           setError(data.error || "Failed to fetch client dashboard data.");
           setLoading(false);
         }
       } catch (err) {
-        console.error("Error fetching dashboard data:", err.message);
-        setError(err.message);
+        setError(err.message || "Error fetching dashboard data.");
         setLoading(false);
       }
     };
-  
+
     fetchData();
-  }, [token]); // `token` is a dependency for this useEffect
-  
+  }, [token, signOut]);
 
   const handleRatingChange = (bookingId, value) => {
     setRating({ ...rating, [bookingId]: value });
@@ -165,8 +160,8 @@ const ClientDashboard = () => {
                   <td>${booking.price.toFixed(2)}</td>
                   <td>
                     <select
-                        value={rating[booking.id] || booking.rating || ""}
-                        onChange={(e) =>
+                      value={rating[booking.id] || booking.rating || ""}
+                      onChange={(e) =>
                         handleRatingChange(booking.id, parseInt(e.target.value))
                       }
                     >

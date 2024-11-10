@@ -26,14 +26,20 @@ const BookingCalendar = () => {
                 const data = await response.json();
 
                 if (response.ok) {
-                    if (Array.isArray(data.bookings)) {
-                        const formattedEvents = data.bookings.map((event) => ({
+                    // Check if the response is an array directly or an object containing an array
+                    const bookings = Array.isArray(data) ? data : data.bookings || [];
+
+                    if (Array.isArray(bookings)) {
+                        // Assuming the response contains both regular and engineering bookings, you can
+                        // map them into the same structure and add them to the events list
+                        const formattedEvents = bookings.map((event) => ({
                             id: event.id,
                             title: event.title,
                             start: new Date(event.start),
                             end: new Date(event.end),
                             type: event.type,
                         }));
+
                         setEvents(formattedEvents);
                     } else {
                         console.error('Error: Bookings data is not an array', data);

@@ -110,7 +110,7 @@ export const AuthProvider = ({ children }) => {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/check-session`, {
         method: 'GET',
         headers: {
-          'Authorization': `Bearer ${token}`, // Send token for verification
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
         },
       });
 

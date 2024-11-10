@@ -24,7 +24,7 @@ const SignIn = () => {
         }
     
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/signin`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/signin`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -39,11 +39,12 @@ const SignIn = () => {
                 const data = await response.json();
                 console.log('Response data:', data);
     
-                // Save the JWT token in localStorage or sessionStorage
-                localStorage.setItem('token', data.token);  // Storing token in localStorage
+                // Save the JWT token and refresh token in localStorage
+                localStorage.setItem('token', data.token);  // Storing access token
+                localStorage.setItem('refresh_token', data.refresh_token); // Storing refresh token
     
-                // Update the AuthContext with user data
-                signIn(data.user, data.token);  // Pass the token along with user data
+                // Update the AuthContext with user data and both tokens
+                signIn(data.user, data.token, data.refresh_token);  // Pass both token and refresh_token along with user data
     
                 // Redirect based on user type
                 if (data.user.user_type === 'admin') {
