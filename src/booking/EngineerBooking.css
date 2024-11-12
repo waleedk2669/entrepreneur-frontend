@@ -1,0 +1,126 @@
+/* EngineerBooking.css */
+
+/* Card styling */
+.engineeringcard {
+    max-width: 800px;
+    width: 100%;
+    margin: 30px;
+    padding: 35px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+    background: linear-gradient(to bottom right, #09e2ff, #fb5454);
+    transition: transform 0.3s, box-shadow 0.3s;
+    max-height: 40rem;
+}
+
+.engineeringcard:hover {
+    transform: translateY(-5px);
+    box-shadow: 45 45px 25px rgb(255, 255, 255);
+}
+
+/* Header styling */
+h3 {
+    text-align: center;
+    color: #00796b;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+}
+
+/* Form styling */
+.engineeringform-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto; /* Enable vertical scrolling */
+    max-height: 30rem;
+    padding: 25px;
+
+}
+
+.engineeringform-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.engineeringform-group label {
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 5px;
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+.engineeringform-group input,
+.engineeringform-group textarea,
+.engineeringform-group select {
+    width: 94%;
+    padding: 12px;
+    font-size: 1.2rem;
+    text-align: center;
+    color: black;
+    border: 1px solid #b2dfdb;
+    border-radius: 10px;
+    background-color: #ffffff;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+.engineeringform-group input:focus,
+.engineeringform-group textarea:focus,
+.engineeringform-group select:focus {
+    border-color: #ff0000;
+    background-color: #e0f2f1;
+    border-width: 4px;
+    outline: none;
+}
+
+/* Error and success messages */
+.error-text {
+    color: #d32f2f;
+    text-align: center;
+    font-weight: bold;
+}
+
+.success-text {
+    color: #388e3c;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Submit button styling */
+/* Submit button styling */
+.engineeringsubmit-button {
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    width: 92%;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+
+.submit-button:hover {
+    background-color: #004d40;
+    transform: translateY(-2px);
+}
+
+/* Responsive layout */
+@media (max-width: 600px) {
+    .card {
+        max-width: 100%;
+        margin: 10px;
+        padding: 20px;
+    }
+
+    h3 {
+        font-size: 1.4rem;
+    }
+
+    .submit-button {
+        padding: 12px;
+    }
+}

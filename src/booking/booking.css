@@ -1,4 +1,5 @@
-/* General container styling */
+/* booking.css */
+
 .booking-container {
     padding: 30px;
     background-image: url('/booking.webp'); /* Update this path */
@@ -6,168 +7,102 @@
     background-position: center;
     background-repeat: no-repeat;
     width: 100vw;
-    height: 100vh;
+    height: 150vh;
     border-radius: 45px;
-
 }
 
-/* Heading styling */
-.booking-container h2 {
-    text-align: center;
-    color: #4a90e2;
-    margin-bottom: 20px;
-    font-size: 2rem;
-    font-weight: bold;
-    background-color: black;
 
-}
-.bookingformss {
-    background-color: rgba(0, 0, 0, 0.32);
-}
-/* Form styling */
-.booking-form {
+.booking-forms-container {
     display: flex;
-    flex-direction: column;
-    background-color: black;
-}
-
-.booking-form label {
-    font-size: 1.1rem;
-    margin-bottom: 8px;
-    color: #555;
-}
-
-.booking-form input[type="text"],
-.booking-form input[type="number"],
-.booking-form textarea {
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 15px;
-    transition: border-color 0.3s;
-}
-
-.booking-form input[type="text"]:focus,
-.booking-form input[type="number"]:focus,
-.booking-form textarea:focus {
-    border-color: #4a90e2;
-    outline: none;
-    box-shadow: 0 0 5px rgba(74, 144, 226, 0.3);
-}
-
-/* Button styling */
-.booking-form button {
-    background-color: #4a90e2;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 12px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.booking-form button:hover {
-    background-color: #357abd;
-}
-
-/* Error and success messages */
-.error {
-    color: red;
-    margin-bottom: 15px;
-}
-
-.success {
-    color: green;
-    margin-bottom: 15px;
-}
-
-/* Booking list styling */
-.booking-list {
-    margin-top: 30px;
-}
-
-.booking-list li {
-    background-color: #ffffff;
     padding: 15px;
-    border: 1px solid #e0e0e0;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    gap: 20px; /* Space between the cards */
+    justify-content: center; /* Center the forms horizontally */
+    align-items: flex-start; /* Align the forms at the top */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    
 }
 
-.booking-list p {
-    margin: 5px 0;
-    font-size: 1rem;
+.bookingtitle {
+    margin: auto;
+    text-align: center;
+    background-color: white;
+    color: black;
 }
-
-.booking-list .booking-detail {
-    color: #333;
-    font-weight: 600;
+.booking-forms-container > div {
+    flex: 1;
+    max-width: 70rem; /* Limit the width of each form card */
+    min-width: 300px;
 }
-
-/* Responsive adjustments */
-@media (max-width: 600px) {
-    .booking-container {
-        padding: 15px;
-    }
-
-    .booking-container h2 {
-        font-size: 1.5rem;
-    }
-
-    .booking-form label,
-    .booking-list p {
-        font-size: 0.9rem;
-    }
-
-    .booking-form button {
-        font-size: 1rem;
-        padding: 10px;
-    }
-}
-.booking-page {
-    padding: 20px;
-}
-
-.toggle-buttons {
+/* Service Cards Container */
+.service-cards-container {
     display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
     justify-content: center;
-    gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
+/* Individual Service Card Styling */
+.service-card {
+    max-width: 60rem;
+    margin:auto;
+    max-height: 400px; /* Set a maximum height for the card */
+    padding: 20px;
+    font-size: 1.3rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to bottom right, #e3f2fd, #ffffff);
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow-y: auto; /* Enable vertical scrolling */
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: #007BFF #f0f0f0; /* Custom scrollbar colors */
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    max-width: 400px;
-    margin: 0 auto;
+/* Custom scrollbar styling for Webkit browsers (Chrome, Safari) */
+.service-card::-webkit-scrollbar {
+    width: 8px;
 }
 
-input,
-textarea {
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+.service-card::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 10px;
 }
 
-ul {
+.service-card::-webkit-scrollbar-thumb {
+    background-color: #007BFF;
+    border-radius: 10px;
+    border: 2px solid #f0f0f0;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Card Header */
+.service-card h3 {
+    text-align: center;
+    color: #00796b;
+    margin-bottom: 15px;
+}
+
+/* Card Content */
+.service-card ul {
     list-style: none;
     padding: 0;
+    color: #ff0000;
+    font-size: 1.3rem;
+
 }
 
-li {
-    border: 1px solid #ddd;
-    padding: 10px;
+.service-card li {
     margin-bottom: 10px;
-    border-radius: 5px;
+    color: black;
+    font-size: 1.3rem;
+
+}
+
+.service-card p {
+    font-weight: bold;
+    color: #010403;
 }

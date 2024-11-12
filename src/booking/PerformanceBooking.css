@@ -1,0 +1,141 @@
+/* Card styling */
+.performancecard {
+    width: 100%;
+    margin: 20px;
+    padding: 20px;
+    overflow-y: auto; /* Enable vertical scrolling */
+    max-height: 40rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+    background: linear-gradient(to bottom right, #8cabff, rgb(158, 255, 158), #ff7070);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.performancecard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Header styling */
+h3 {
+    text-align: center;
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-decoration: underline;
+}
+
+/* Form content styling */
+.performanceform-content {
+    display: flex;
+    padding: 45px;
+    flex-direction: column;
+    gap: 15px;
+    overflow-y: auto; /* Enable vertical scrolling */
+    max-height: 30rem;
+}
+
+/* Form group styling */
+.performanceform-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.performanceform-group label {
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 5px;
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+.performanceform-group input,
+.performanceform-group textarea
+{
+    width: 90%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    transition: border-color 0.2s;
+    color:black;
+    text-align: center;
+    margin: auto;
+    font-size: 1.2rem;
+
+}
+.performanceform-group select {
+    width: 94%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #ffffff;
+    transition: border-color 0.2s;
+    color:black;
+    text-align: center;
+    font-size: 1.2rem;
+    margin: auto;
+}
+
+.performanceform-group input:focus,
+.performanceform-group textarea:focus,
+.performanceform-group select:focus {
+    border-color: #007BFF;
+    border-width: 4px;
+    outline: none;
+}
+
+
+ #eventDate{
+    width: 90%;
+    margin-left: 2rem;
+ }
+/* Error and success messages */
+.error-text {
+    color: #e63946;
+    text-align: center;
+    font-weight: bold;
+}
+
+.success-text {
+    color: #2a9d8f;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Submit button styling */
+.submit-button {
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    font-weight: bold;
+    width: 94%;
+    font-size: 1.3rem;
+    cursor: pointer;
+    margin-left: 2rem;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Responsive layout */
+@media (max-width: 600px) {
+    .card {
+        max-width: 100%;
+        margin: 10px;
+    }
+
+    h3 {
+        font-size: 1.3rem;
+    }
+
+    .submit-button {
+        padding: 10px;
+    }
+}

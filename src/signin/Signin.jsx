@@ -10,7 +10,8 @@ const SignIn = () => {
     const [error, setError] = useState('');
     const navigate = useNavigate();
     const { signIn } = useAuth(); // Access signIn from AuthContext
-
+    const token = localStorage.getItem('token');
+    console.log('\n\n\n TOKEN IS : ', token)
     const handleSubmit = async (e) => {
         e.preventDefault();
     
@@ -28,7 +29,10 @@ const SignIn = () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+
                 },
+                credentials: 'include',
                 body: JSON.stringify({ username, password }),
             });
     

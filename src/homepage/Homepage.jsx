@@ -7,11 +7,14 @@ const Homepage = () => {
     const [averageRating, setAverageRating] = useState(null);
     useEffect(() => {
         const fetchAverageRating = async () => {
+            const token = localStorage.getItem('token'); // Get the token from localStorage
+
             try {
                 const response = await fetch('http://localhost:5002/api/average-rating', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
+                        ...(token && { 'Authorization': `Bearer ${token}` }), // Include the token if it exists
                     },
                 });
 
@@ -29,6 +32,7 @@ const Homepage = () => {
 
         fetchAverageRating();
     }, []);
+
     return (
         <div className="homepage">
 

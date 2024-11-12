@@ -91,8 +91,7 @@ const AdminDashboard = () => {
       },
     ],
   };
-
-  const options = {
+  const barChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
@@ -125,6 +124,56 @@ const AdminDashboard = () => {
       },
     },
   };
+  
+  // Options for Pie Chart
+  const pieChartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        labels: {
+          color: 'white',
+        },
+      },
+      tooltip: {
+        titleColor: 'white',
+        bodyColor: 'white',
+      },
+    },
+  };
+  // const options = {
+  //   responsive: true,
+  //   maintainAspectRatio: false,
+  //   plugins: {
+  //     legend: {
+  //       labels: {
+  //         color: 'white',
+  //       },
+  //     },
+  //     tooltip: {
+  //       titleColor: 'white',
+  //       bodyColor: 'white',
+  //     },
+  //   },
+  //   scales: {
+  //     x: {
+  //       grid: {
+  //         color: 'white',
+  //       },
+  //       ticks: {
+  //         color: 'white',
+  //       },
+  //     },
+  //     y: {
+  //       grid: {
+  //         color: 'white',
+  //       },
+  //       ticks: {
+  //         color: 'white',
+  //       },
+  //     },
+  //   },
+  // };
 
   // Chart Data for Payment Status Summary
   const paymentStatusData = {
@@ -163,8 +212,8 @@ const AdminDashboard = () => {
         {/* Status Summary Section */}
         <div className="status-summary">
           <h2>Booking Status Summary</h2>
-          <Bar data={bookingStatusData} options={options} />
-        </div>
+          <Bar data={bookingStatusData} options={barChartOptions} />
+          </div>
 
         {/* Payment Summary Section */}
         <div className="payment-summary">
@@ -173,8 +222,8 @@ const AdminDashboard = () => {
             <li>Unpaid: {overview.payment_summary.unpaid}</li>
             <li>Paid: {overview.payment_summary.paid}</li>
           </ul>
-          <Pie data={paymentStatusData} options={options} />
-        </div>
+          <Pie data={paymentStatusData} options={pieChartOptions} />
+          </div>
       </div>
 
       {/* Recent Bookings Section */}
