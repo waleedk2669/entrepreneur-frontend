@@ -8,6 +8,30 @@ const ClientDashboard = () => {
     const [overview, setOverview] = useState({});
   const [regularBookings, setRegularBookings] = useState([]);
   const [engineeringBookings, setEngineeringBookings] = useState([]);
+  const [editingEngineeringBookingId, setEditingEngineeringBookingId] = useState(null);
+  const [editingBookingId, setEditingBookingId] = useState(null);
+  const formatDateForInput = (dateString) => {
+    if (!dateString) return '';
+    const localDate = new Date(dateString);
+    const year = localDate.getFullYear();
+    const month = String(localDate.getMonth() + 1).padStart(2, '0');
+    const day = String(localDate.getDate()).padStart(2, '0');
+    const hours = String(localDate.getHours()).padStart(2, '0');
+    const minutes = String(localDate.getMinutes()).padStart(2, '0');
+    return `${year}-${month}-${day}T${hours}:${minutes}`;
+  };
+  const formatDateForEngineeringBooking = (dateString) => {
+    if (!dateString) return null;
+    const options = {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    };
+    // Format as 'Thursday, January 6, 2025'
+    return new Date(dateString).toLocaleDateString('en-US', options);
+  };
+  
   const [error, setError] = useState(null);
   const [rating, setRating] = useState({});
   const [clientBookings, setClientBookings] = useState([]);
@@ -22,6 +46,183 @@ const ClientDashboard = () => {
       { pending: 0, confirmed: 0, completed: 0 }
     );
     return statusSummary;
+  };
+  const handleBookingChange = (bookingId, field, value, type = "regular") => {
+    if (type === "regular") {
+      setRegularBookings((prevBookings) =>
+        prevBookings.map((booking) =>
+          booking.id === bookingId ? { ...booking, [field]: value } : booking
+        )
+      );
+    } else {
+      setEngineeringBookings((prevBookings) =>
+        prevBookings.map((booking) =>
+          booking.id === bookingId ? { ...booking, [field]: value } : booking
+        )
+      );
+    }
+  };
+  const handleSaveEngineeringBooking = async (bookingId) => {
+    if (!token) {
+      setError("No token found. Please sign in.");
+      return;
+    }
+  
+    const bookingToUpdate = engineeringBookings.find((b) => b.id === bookingId);
+  
+    // Format dates as expected by the backend
+    const formatDate = (dateString) => {
+      if (!dateString) return null;
+      const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+      };
+      return new Date(dateString).toLocaleString('en-US', options).replace(' at ', ' ');
+    };
+  
+    // Prepare the data object for the PATCH request
+    const updateData = {
+      project_start_date: formatDateForEngineeringBooking(bookingToUpdate.project_start_date),
+      project_end_date: formatDateForEngineeringBooking(bookingToUpdate.project_end_date),
+      project_description: bookingToUpdate.project_description,
+      price: parseFloat(bookingToUpdate.price) > 0 ? parseFloat(bookingToUpdate.price) : 0,
+      special_requests: bookingToUpdate.special_requests,
+      project_name: bookingToUpdate.project_name,
+      service_type: bookingToUpdate.service_type,
+      project_manager: bookingToUpdate.project_manager,
+      contact_email: bookingToUpdate.contact_email,
+      contact_phone: bookingToUpdate.contact_phone,
+      rating: parseInt(bookingToUpdate.rating) || null,
+    };
+  
+    // Frontend validation
+    const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    if (updateData.contact_email && !emailRegex.test(updateData.contact_email)) {
+      alert("Invalid email format.");
+      return;
+    }
+  
+    if (updateData.price <= 0) {
+      alert("Price must be a positive number.");
+      return;
+    }
+  
+    try {
+      const response = await fetch(`http://localhost:5002/api/engineeringbookings/${bookingId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify(updateData),
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        alert("Engineering booking updated successfully.");
+        setEngineeringBookings((prevBookings) =>
+          prevBookings.map((booking) =>
+            booking.id === bookingId ? data : booking
+          )
+        );
+        setEditingEngineeringBookingId(null);
+      } else {
+        alert(data.error || "Failed to update engineering booking.");
+      }
+    } catch (error) {
+      console.error("Error updating engineering booking:", error);
+      setError("Error updating engineering booking.");
+    }
+  };
+  
+  
+  const handleSaveBooking = async (bookingId) => {
+    if (!token) {
+      setError("No token found. Please sign in.");
+      return;
+    }
+  
+    const bookingToUpdate = regularBookings.find((b) => b.id === bookingId);
+  
+    // Format event_date as expected by the backend
+    const formatDate = (dateString) => {
+        if (!dateString) return null;
+        const options = {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: true,
+        };
+        // Remove the "at" from the formatted date string
+        return new Date(dateString).toLocaleString('en-US', options).replace(' at ', ' ');
+      };
+  
+    // Prepare the data object to be sent in the PATCH request
+    const updateData = {
+      booking_date: formatDate(bookingToUpdate.booking_date),
+      client_name: bookingToUpdate.client_name,
+      client_email: bookingToUpdate.client_email,
+      client_phone: bookingToUpdate.client_phone,
+      event_date: formatDate(bookingToUpdate.event_date),
+      event_name: bookingToUpdate.event_name,
+      event_type: bookingToUpdate.event_type,
+      location: bookingToUpdate.location,
+      number_of_guests: parseInt(bookingToUpdate.number_of_guests) || 0,
+      price: parseFloat(bookingToUpdate.price) > 0 ? parseFloat(bookingToUpdate.price) : 0,
+      special_requests: bookingToUpdate.special_requests,
+      payment_status: bookingToUpdate.payment_status,
+      rating: parseInt(bookingToUpdate.rating) || null,
+    };
+  
+    // Frontend email validation
+    const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    if (updateData.client_email && !emailRegex.test(updateData.client_email)) {
+      alert("Invalid email format.");
+      return;
+    }
+  
+    // Frontend price validation
+    if (updateData.price <= 0) {
+      alert("Price must be a positive number.");
+      return;
+    }
+  
+    try {
+      const response = await fetch(`http://localhost:5002/api/bookings/${bookingId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify(updateData),
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        alert("Booking updated successfully.");
+        setRegularBookings((prevBookings) =>
+          prevBookings.map((booking) =>
+            booking.id === bookingId ? data : booking
+          )
+        );
+        setEditingBookingId(null);
+      } else {
+        alert(data.error || "Failed to update booking.");
+      }
+    } catch (error) {
+      console.error("Error updating booking:", error);
+      setError("Error updating booking.");
+    }
   };
   
   // If no token, sign out immediately
@@ -106,51 +307,78 @@ const ClientDashboard = () => {
   
 
   const handleRatingChange = (bookingId, value, type) => {
-    const key = `${type}-${bookingId}`;
-    setRating({ ...rating, [key]: value });
+    if (type === "regular") {
+      setRegularBookings((prevBookings) =>
+        prevBookings.map((booking) =>
+          booking.id === bookingId ? { ...booking, rating: value } : booking
+        )
+      );
+    } else {
+      setEngineeringBookings((prevBookings) =>
+        prevBookings.map((booking) =>
+          booking.id === bookingId ? { ...booking, rating: value } : booking
+        )
+      );
+    }
   };
+  
   const submitRating = async (bookingId, type) => {
     if (!token) {
       setError("No token found. Please sign in.");
       return;
     }
   
-    const key = `${type}-${bookingId}`;
+    const bookingToUpdate =
+      type === "regular"
+        ? regularBookings.find((b) => b.id === bookingId)
+        : engineeringBookings.find((b) => b.id === bookingId);
   
-    try {
-      const endpoint =
-        type === "regular"
-          ? `http://localhost:5002/api/bookings/${bookingId}/rate`
-          : `http://localhost:5002/api/engineeringbookings/${bookingId}/rate`;
-  
-      const response = await fetch(endpoint, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
-        },
-        body: JSON.stringify({ rating: rating[key] }),
-      });
+        const newRating = bookingToUpdate?.rating;
+
+        try {
+          const endpoint =
+            type === "regular"
+              ? `http://localhost:5002/api/bookings/${bookingId}/rate`
+              : `http://localhost:5002/api/engineeringbookings/${bookingId}/rate`;
+        
+          const response = await fetch(endpoint, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${token}`,
+            },
+            body: JSON.stringify({ rating: newRating }),
+          });
+        
   
       const data = await response.json();
   
       if (response.ok) {
         alert(`Rating submitted successfully: ${data.rating}`);
-        // Update the rating in the state
-        setClientBookings((prevBookings) =>
-          prevBookings.map((booking) =>
-            booking.id === bookingId
-              ? { ...booking, rating: rating[key] }
-              : booking
-          )
-        );
+  
+        // Update the rating directly in the state
+        if (type === "regular") {
+          setRegularBookings((prevBookings) =>
+            prevBookings.map((booking) =>
+              booking.id === bookingId ? { ...booking, rating: data.rating } : booking
+            )
+          );
+        } else {
+          setEngineeringBookings((prevBookings) =>
+            prevBookings.map((booking) =>
+              booking.id === bookingId ? { ...booking, rating: data.rating } : booking
+            )
+          );
+        }
       } else {
         alert(data.error || "Failed to submit rating.");
       }
     } catch (error) {
       console.error("Error submitting rating:", error);
+      setError("Error submitting rating.");
     }
   };
+    
   
   // Render loading state
   if (loading) {
@@ -209,44 +437,190 @@ const ClientDashboard = () => {
         </tr>
       </thead>
       <tbody>
-        {regularBookings.map((booking) => (
-          <tr key={booking.id}>
-            <td>{booking.id}</td>
-            <td>{booking.event_name}</td>
-            <td>{booking.event_type}</td>
-            <td>{booking.client_name}</td>
-            <td>{booking.client_email}</td>
-            <td>{booking.client_phone}</td>
-            <td>{booking.number_of_guests}</td>
-            <td>{booking.special_requests || "N/A"}</td>
-            <td>{booking.event_date}</td>
-            <td>{booking.location}</td>
-            <td>{booking.status}</td>
-            <td>${booking.price.toFixed(2)}</td>
-            <td>
-              <select
-                value={rating[`regular-${booking.id}`] ?? booking.rating ?? ""}
-                onChange={(e) =>
-                  handleRatingChange(booking.id, parseInt(e.target.value), "regular")
-                }
-              >
-                <option value="" disabled>Select rating</option>
-                {[1, 2, 3, 4, 5].map((num) => (
-                  <option key={num} value={num}>{num} Stars</option>
-                ))}
-              </select>
-            </td>
-            <td>
-              <button
-                onClick={() => submitRating(booking.id, "regular")}
-                disabled={!rating[`regular-${booking.id}`]}
-              >
-                Submit
-              </button>
-            </td>
-          </tr>
-        ))}
-      </tbody>
+  {regularBookings.map((booking) => (
+    <tr key={booking.id}>
+      <td>{booking.id}</td>
+      <td>
+        {editingBookingId === booking.id ? (
+          <input
+            type="text"
+            value={booking.event_name}
+            onChange={(e) =>
+              handleBookingChange(booking.id, "event_name", e.target.value)
+            }
+          />
+        ) : (
+          booking.event_name
+        )}
+      </td>
+      <td>
+        {editingBookingId === booking.id ? (
+          <input
+            type="text"
+            value={booking.event_type}
+            onChange={(e) =>
+              handleBookingChange(booking.id, "event_type", e.target.value)
+            }
+          />
+        ) : (
+          booking.event_type
+        )}
+      </td>
+      <td>
+        {editingBookingId === booking.id ? (
+          <input
+            type="text"
+            value={booking.client_name}
+            onChange={(e) =>
+              handleBookingChange(booking.id, "client_name", e.target.value)
+            }
+          />
+        ) : (
+          booking.client_name
+        )}
+      </td>
+      <td>
+        {editingBookingId === booking.id ? (
+          <input
+            type="email"
+            value={booking.client_email}
+            onChange={(e) =>
+              handleBookingChange(booking.id, "client_email", e.target.value)
+            }
+          />
+        ) : (
+          booking.client_email
+        )}
+      </td>
+      <td>
+        {editingBookingId === booking.id ? (
+          <input
+            type="tel"
+            value={booking.client_phone}
+            onChange={(e) =>
+              handleBookingChange(booking.id, "client_phone", e.target.value)
+            }
+          />
+        ) : (
+          booking.client_phone
+        )}
+      </td>
+      <td>
+        {editingBookingId === booking.id ? (
+          <input
+            type="number"
+            value={booking.number_of_guests}
+            onChange={(e) =>
+              handleBookingChange(booking.id, "number_of_guests", parseInt(e.target.value))
+            }
+          />
+        ) : (
+          booking.number_of_guests
+        )}
+      </td>
+      <td>
+        {editingBookingId === booking.id ? (
+          <textarea
+            value={booking.special_requests}
+            onChange={(e) =>
+              handleBookingChange(booking.id, "special_requests", e.target.value)
+            }
+          />
+        ) : (
+          booking.special_requests || "N/A"
+        )}
+      </td>
+      <td>
+        {editingBookingId === booking.id ? (
+            <input
+  type="datetime-local"
+  value={formatDateForInput(booking.event_date)}
+  onChange={(e) =>
+    handleBookingChange(booking.id, "event_date", e.target.value)
+  }
+/>
+
+        ) : (
+          booking.event_date
+        )}
+      </td>
+      <td>
+        {editingBookingId === booking.id ? (
+          <input
+            type="text"
+            value={booking.location}
+            onChange={(e) =>
+              handleBookingChange(booking.id, "location", e.target.value)
+            }
+          />
+        ) : (
+          booking.location
+        )}
+      </td>
+      <td>
+        {editingBookingId === booking.id ? (
+          <select
+            value={booking.status}
+            onChange={(e) =>
+              handleBookingChange(booking.id, "status", e.target.value)
+            }
+          >
+            <option value="pending">Pending</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="completed">Completed</option>
+          </select>
+        ) : (
+          booking.status
+        )}
+      </td>
+      <td>
+        {editingBookingId === booking.id ? (
+          <input
+            type="number"
+            step="0.01"
+            value={booking.price}
+            onChange={(e) =>
+              handleBookingChange(booking.id, "price", parseFloat(e.target.value))
+            }
+          />
+        ) : (
+          `$${booking.price.toFixed(2)}`
+        )}
+      </td>
+      <td>
+  {editingBookingId === booking.id ? (
+    <select
+      value={booking.rating ?? ""}
+      onChange={(e) =>
+        handleRatingChange(booking.id, parseInt(e.target.value), "regular")
+      }
+    >
+      <option value="" disabled>Select rating</option> 
+      {[1, 2, 3, 4, 5].map((num) => (
+        <option key={num} value={num}>{num} Stars</option>
+      ))}
+    </select>
+  ) : (
+    `${booking.rating ?? "No rating"} Stars`
+  )}
+</td>
+
+
+      <td>
+        {editingBookingId === booking.id ? (
+          <>
+            <button onClick={() => handleSaveBooking(booking.id)}>Save</button>
+            <button onClick={() => setEditingBookingId(null)}>Cancel</button>
+          </>
+        ) : (
+          <button onClick={() => setEditingBookingId(booking.id)}>Edit</button>
+        )}
+      </td>
+    </tr>
+  ))}
+</tbody>
+
+
     </table>
   ) : (
     <p>No regular bookings available.</p>
@@ -272,39 +646,109 @@ const ClientDashboard = () => {
               </tr>
             </thead>
             <tbody>
-              {engineeringBookings.map((engBooking) => (
-                <tr key={engBooking.id}>
-                  <td>{engBooking.id}</td>
-                  <td>{engBooking.project_start_date}</td>
-                  <td>{engBooking.project_end_date}</td>
-                  <td>{engBooking.project_description}</td>
-                  <td>{engBooking.status}</td>
-                  <td>${engBooking.price.toFixed(2)}</td>
-                  <td>
-                  <select
-  value={rating[`engineering-${engBooking.id}`] ?? engBooking.rating ?? ""}
-  onChange={(e) =>
-    handleRatingChange(engBooking.id, parseInt(e.target.value), "engineering")
-  }
->
-  <option value="" disabled>Select rating</option>
-  {[1, 2, 3, 4, 5].map((num) => (
-    <option key={num} value={num}>{num} Stars</option>
-  ))}
-</select>
+  {engineeringBookings.map((engBooking) => (
+    <tr key={engBooking.id}>
+      <td>{engBooking.id}</td>
+      <td>
+        {editingEngineeringBookingId === engBooking.id ? (
+          <input
+            type="datetime-local"
+            value={formatDateForInput(engBooking.project_start_date)}
+            onChange={(e) =>
+              handleBookingChange(engBooking.id, "project_start_date", e.target.value, "engineering")
+            }
+          />
+        ) : (
+          engBooking.project_start_date
+        )}
+      </td>
+      <td>
+        {editingEngineeringBookingId === engBooking.id ? (
+          <input
+            type="datetime-local"
+            value={formatDateForInput(engBooking.project_end_date)}
+            onChange={(e) =>
+              handleBookingChange(engBooking.id, "project_end_date", e.target.value, "engineering")
+            }
+          />
+        ) : (
+          engBooking.project_end_date
+        )}
+      </td>
+      <td>
+        {editingEngineeringBookingId === engBooking.id ? (
+          <textarea
+            value={engBooking.project_description}
+            onChange={(e) =>
+              handleBookingChange(engBooking.id, "project_description", e.target.value, "engineering")
+            }
+          />
+        ) : (
+          engBooking.project_description
+        )}
+      </td>
+      <td>
+        {editingEngineeringBookingId === engBooking.id ? (
+          <select
+            value={engBooking.status}
+            onChange={(e) =>
+              handleBookingChange(engBooking.id, "status", e.target.value, "engineering")
+            }
+          >
+            <option value="pending">Pending</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="completed">Completed</option>
+          </select>
+        ) : (
+          engBooking.status
+        )}
+      </td>
+      <td>
+        {editingEngineeringBookingId === engBooking.id ? (
+          <input
+            type="number"
+            step="0.01"
+            value={engBooking.price}
+            onChange={(e) =>
+              handleBookingChange(engBooking.id, "price", parseFloat(e.target.value), "engineering")
+            }
+          />
+        ) : (
+          `$${engBooking.price.toFixed(2)}`
+        )}
+      </td>
+      <td>
+  {editingEngineeringBookingId === engBooking.id ? (
+    <select
+      value={engBooking.rating ?? ""}
+      onChange={(e) =>
+        handleBookingChange(engBooking.id, "rating", parseInt(e.target.value), "engineering")
+      }
+    >
+      <option value="" disabled>Select rating</option>
+      {[1, 2, 3, 4, 5].map((num) => (
+        <option key={num} value={num}>{num} Stars</option>
+      ))}
+    </select>
+  ) : (
+    `${engBooking.rating ?? "No rating"} Stars`
+  )}
+</td>
+<td>
+  {editingEngineeringBookingId === engBooking.id ? (
+    <>
+      <button onClick={() => handleSaveEngineeringBooking(engBooking.id)}>Save</button>
+      <button onClick={() => setEditingEngineeringBookingId(null)}>Cancel</button>
+    </>
+  ) : (
+    <button onClick={() => setEditingEngineeringBookingId(engBooking.id)}>Edit</button>
+  )}
+</td>
 
-                  </td>
-                  <td>
-                    <button
-                      onClick={() => submitRating(engBooking.id, "engineering")}
-                      disabled={!rating[`engineering-${engBooking.id}`]}
-                      >
-                      Submit
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
+    </tr>
+  ))}
+</tbody>
+
           </table>
         ) : (
           <p>No engineering bookings available.</p>

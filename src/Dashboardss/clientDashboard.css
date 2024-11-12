@@ -22,6 +22,12 @@
     padding: 10px;
     border-radius: 20px;
 }
+.client-dashboard h1,
+.client-dashboard h2 {
+    text-align: center;
+    color: #444;
+    margin-bottom: 20px;
+}
 
 .upcoming-bookings {
     margin-bottom: 20px;
@@ -34,19 +40,61 @@
     border-radius: 20px;
 }
 
-.bookings-table table {
+table {
     width: 100%;
     border-collapse: collapse;
+    font-size: 1rem;
+    min-width: 800px;
 }
 
-.bookings-table th,
-.bookings-table td {
-    padding: 10px;
+
+th,
+td {
+    padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
 
-.bookings-table th {
-    background-color: #f4f4f4;
-    border-radius: 40px;
+/* Header styling */
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+/* Table container */
+.bookings-table,
+.engineering-bookings-table {
+    overflow-x: auto;
+    margin-bottom: 40px;
+}
+tr:nth-child(even) {
+    background-color: #8564e7;
+}
+tr:hover {
+    background-color: #ff5f5f;
+}
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    padding: 8px;
+    font-size: 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+button {
+    padding: 8px 12px;
+    margin: 5px;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #4CAF50;
+    color: white;
 }
