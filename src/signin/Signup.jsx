@@ -43,39 +43,42 @@ const Signup = () => {
         e.preventDefault();
         setError('');
         setSuccess('');
-
-        // Validate password strength
+    
         const strength = getPasswordStrength(password);
         if (strength < 3) {
             setError('Password is too weak. Please meet the requirements.');
             return;
         }
-
+    
         try {
-            // Send sign-up request
-            const response = await fetch('/api/signup', {
+            const response = await fetch('http://localhost:5002/api/signup', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password, user_type: userType }),
             });
-
+    
             const data = await response.json();
-
+            console.log("Response from server:", data);
+    
             if (response.ok) {
-                // Store the token and user data
-                localStorage.setItem('token', data.token); // Store JWT token
-                signIn(data.user); // Sign in using the token
-
+                localStorage.setItem('token', data.token);  // Store the token in localStorage
+                localStorage.setItem('user', JSON.stringify(data.user));  // Optionally store user info
+                signIn(data.user, data.token);  // Sign the user in
+    
                 setSuccess('Account created successfully! Redirecting...');
-                setTimeout(() => navigate('/admin-dashboard'), 200); // Navigate to the dashboard
+                setTimeout(() => navigate('/signin'), 200);  // Navigate after success
             } else {
                 setError(data.error || 'Sign-up failed');
             }
         } catch (err) {
+            console.error("Error during sign-up:", err);
             setError('An error occurred. Please try again.');
         }
     };
-
+    
+    
+    
+    
     return (
         <div className="signup">
             <Navbar />

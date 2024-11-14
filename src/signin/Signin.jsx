@@ -25,7 +25,7 @@ const SignIn = () => {
         }
     
         try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/signin`, {
+        const response = await fetch(`/api/signin`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -46,6 +46,7 @@ const SignIn = () => {
                 // Save the JWT token and refresh token in localStorage
                 localStorage.setItem('token', data.token);  // Storing access token
                 localStorage.setItem('refresh_token', data.refresh_token); // Storing refresh token
+
     
                 // Update the AuthContext with user data and both tokens
                 signIn(data.user, data.token, data.refresh_token);  // Pass both token and refresh_token along with user data
