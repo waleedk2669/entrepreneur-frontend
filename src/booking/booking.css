@@ -11,7 +11,15 @@
     border-radius: 45px;
 }
 
-
+.apple-music-player {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
 .booking-forms-container {
     display: flex;
     padding: 15px;
@@ -21,12 +29,18 @@
     flex-wrap: wrap; /* Allow wrapping on smaller screens */
     
 }
-
+.spotify-bookingR-player{
+margin-left: 11rem;
+}
 .bookingtitle {
     margin: auto;
     text-align: center;
     background-color: white;
     color: black;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    font-family: cursive;
+    font-weight: bolder;
 }
 .booking-forms-container > div {
     flex: 1;

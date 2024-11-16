@@ -5,7 +5,7 @@
     background-position: center;
     background-repeat: no-repeat;
     width: 100vw;
-    height: 100vh;
+    height: 200vh;
     text-align: center;
     font-family: 'Arial', sans-serif; /* Clean and modern font */
     border-radius: 8px; /* Rounded corners */
@@ -53,6 +53,7 @@ td {
     padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+    font-weight: bold;
 }
 
 /* Header styling */
@@ -61,16 +62,26 @@ th {
     color: white;
 }
 /* Table container */
+.bookingss-table,
+.engineering-bookings-table {
+    overflow-x: auto;
+    margin-bottom: 40px;
+}
+
 .bookings-table,
 .engineering-bookings-table {
     overflow-x: auto;
     margin-bottom: 40px;
 }
 tr:nth-child(even) {
-    background-color: #8564e7;
+    background-color: #8564e78f;
 }
 tr:hover {
     background-color: #ff5f5f;
+}
+.bookingss-table tr:nth-child(even) {
+    background: linear-gradient(to right, #8564e7, #7b60d1);
+    color: #fff;
 }
 input[type="text"],
 input[type="email"],
@@ -97,4 +108,74 @@ button {
 button:hover {
     background-color: #4CAF50;
     color: white;
+}
+
+
+.dashboard-summaryy {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    color: #ffffff;
+}
+
+.summaryy-cards {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 20px;
+    justify-content: space-around;
+}
+
+.metricc-card {
+    background: linear-gradient(135deg,#00c6ff, purple, red, #00c6ff);
+    border-radius: 10px;
+    text-align: center;
+    min-width: 150px;
+    flex: 1;
+}
+
+.metricc-card h3 {
+    font-size: 1em;
+    color: #ffd700;
+}
+
+.metricc-card p {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.statuss-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.statuss-card {
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    min-width: 120px;
+}
+
+.statusslabel {
+    color: #ff6347;
+}
+
+.statussdata {
+    font-size: 1.3em;
+    font-weight: bold;
+}
+.statuss {
+    color:white;
+}
+
+.client-dashboard h2 {
+    color:white;
+}
+
+.clienttables {
+    width: 60%;
+    margin: auto;
 }

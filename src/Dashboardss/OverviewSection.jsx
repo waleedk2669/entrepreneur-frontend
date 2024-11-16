@@ -1,10 +1,11 @@
 import React from 'react';
 import './adminDashboard.css';
-import { Line } from 'react-chartjs-2';
+import { Line, Bar } from 'react-chartjs-2';
 import { useAuth } from '../AuthContext';
 import {
     Chart as ChartJS,
     LineElement,
+    BarElement,
     CategoryScale,
     LinearScale,
     PointElement,
@@ -13,9 +14,10 @@ import {
 } from 'chart.js';
 
 // Register Chart.js components
-ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Legend);
+ChartJS.register(LineElement, BarElement, CategoryScale, LinearScale, PointElement, Tooltip, Legend);
 
-const OverviewSection = ({ data, dailyAverageGuests, dailyRegistrations  }) => {
+
+const OverviewSection = ({ data, dailyAverageGuests, dailyRegistrations, dailyActiveClients }) => {
     const { user } = useAuth();
 
     if (!user) {
@@ -50,11 +52,84 @@ const OverviewSection = ({ data, dailyAverageGuests, dailyRegistrations  }) => {
     
 
     // Prepare data for Active Clients line graph
-    const activeClientLabels = daily_active_clients.map(item => item.date) || [];
-    const activeClientsData = daily_active_clients.map(item => item.count) || [];
-
-
-
+    const activeClientLabels = dailyActiveClients?.map(item => item.date) || [];
+    const activeClientsData = dailyActiveClients?.map(item => item.count) || [];
+    const activeClientsBarChartData = {
+        labels: activeClientLabels,
+        datasets: [
+            {
+                label: 'Active Clients',
+                data: activeClientsData,
+                backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1,
+            },
+        ],
+    };
+    
+    const barChartOptions = {
+        responsive: true,
+        plugins: {
+            legend: {
+                display: true,
+                position: 'top',
+                labels: {
+                    font: {
+                        size: 14, // Increase font size for the legend
+                    },
+                    color: '#ffffff', // White font color
+                },
+            },
+            tooltip: {
+                enabled: true,
+                bodyFont: {
+                    size: 14, // Increase font size for the tooltips
+                },
+            },
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                grid: {
+                    color: '#ffffff', // Set grid lines to white
+                },
+                ticks: {
+                    color: '#ffffff', // Set y-axis labels to white
+                    font: {
+                        size: 14, // Increase font size for y-axis labels
+                    },
+                },
+                title: {
+                    display: true,
+                    text: 'Number of Active Clients',
+                    color: '#ffffff', // White font color
+                    font: {
+                        size: 16, // Increase font size for the y-axis title
+                    },
+                },
+            },
+            x: {
+                grid: {
+                    color: '#ffffff', // Set grid lines to white
+                },
+                ticks: {
+                    color: '#ffffff', // Set x-axis labels to white
+                    font: {
+                        size: 14, // Increase font size for x-axis labels
+                    },
+                },
+                title: {
+                    display: true,
+                    text: 'Date',
+                    color: '#ffffff', // White font color
+                    font: {
+                        size: 16, // Increase font size for the x-axis title
+                    },
+                },
+            },
+        },
+    };
+    
 
     const registrationsChartData = {
         labels: registrationLabels,
@@ -133,7 +208,7 @@ const OverviewSection = ({ data, dailyAverageGuests, dailyRegistrations  }) => {
                 <p>{total_users}</p>
             </div>
             <div className="metric-card">
-                <h3>New Registrations</h3>
+                <h3>New Users</h3>
                 <p>{new_registrations}</p>
             </div>
         </>
@@ -168,6 +243,7 @@ const OverviewSection = ({ data, dailyAverageGuests, dailyRegistrations  }) => {
                     <h3 className='cardname'>Average Guests</h3>
                     <p>{average_guests}</p>
                 </div>
+                
             </div>
 
             {/* Line Graph for Average Guests per Booking */}
@@ -182,12 +258,11 @@ const OverviewSection = ({ data, dailyAverageGuests, dailyRegistrations  }) => {
                 <Line data={registrationsChartData} options={chartOptions} />
             </div>
 
-            {/* Line Graph for Active Clients */}
-            <div className="line-graph">
-                <h3>Active Clients (Last 30 Days)</h3>
-                <Line data={activeClientsChartData} options={chartOptions} />
-            </div>
-            
+{/* Bar Graph for Active Clients */}
+<div className="bar-graph">
+    <h3>Active Clients (Last 30 Days)</h3>
+    <Bar key={activeClientLabels.join('-')} data={activeClientsBarChartData} options={barChartOptions} />
+    </div>
             <h2 className='status'>Status Summary</h2>
             <div className="status-summary">
                 <div className="status-card">

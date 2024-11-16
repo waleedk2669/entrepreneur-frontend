@@ -151,6 +151,8 @@ const ClientStatsSection = ({
                     <th>User Type</th>
                     <th>Last Login</th>
                     <th>Created At</th>
+                    <th>Delete Users</th>
+
                 </tr>
             </thead>
             <tbody>

@@ -20,25 +20,34 @@
 .navbar li {
     display: inline-flex;  /* Display items inline */
     width: fit-content;
+    text-align: center;
+    align-items: center;
+
     max-height: fit-content;
 
 }
 
 /* Link styling */
 .navbar a {
+    color:white;
+    width:20rem;
     text-decoration: none;  /* Remove underline */
-    font-size: 1.1rem;
+    font-size: 2rem;
     display: flex;  /* Display items inline */
     padding: 8px 16px;  /* Add padding around links */
+    align-items: center;
+
     border-radius: 5px;
-    background-color: rgba(212, 109, 109, 0.975);  /* Lighten on hover */
+    text-align: center;
+    margin: auto;
+    background-color: rgba(255, 103, 103, 0.975);  /* Lighten on hover */
     transition: background-color 0.3s ease, transform 0.2s ease;  /* Smooth transitions */
     
 }
 
 /* Hover and active styling */
 .navbar a:hover {
-    background-color: rgba(255, 255, 255, 0.2);  /* Lighten on hover */
+    background-color: rgba(58, 97, 255, 0.634);  /* Lighten on hover */
     transform: scale(1.05);  /* Slight scaling effect */
 }
 
@@ -46,4 +55,35 @@
     font-weight: bold;
     background-color: rgba(255, 255, 255, 0.3);  /* Highlight active link */
     border-bottom: 2px solid white;  /* Bottom border for active */
+}
+/* Styling for the Sign Out button to match other links */
+.navbar .nav-link {
+    color: white;
+    width: 20rem;
+    text-decoration: none;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-align: center;
+    margin: auto;
+    background-color: rgba(255, 103, 103, 0.975);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: none; /* Remove button border */
+    cursor: pointer; /* Pointer cursor for buttons */
+}
+
+/* Hover and active styling for Sign Out button */
+.navbar .nav-link:hover {
+    background-color: rgba(58, 97, 255, 0.634);
+    transform: scale(1.05);
+}
+
+/* Active styling (optional) */
+.navbar .nav-link.active {
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-bottom: 2px solid white;
 }

@@ -82,6 +82,7 @@ const SignIn = () => {
                     Username:
                     <br />
                     <input
+                        className='signininput'
                         type="text"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
@@ -94,6 +95,8 @@ const SignIn = () => {
                     Password:
                     <br />
                     <input
+                        className='signininput'
+
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}

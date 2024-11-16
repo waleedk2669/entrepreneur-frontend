@@ -17,7 +17,13 @@ const PerformanceBooking = ({ token, userId, fetchBookings }) => {
   const [specialRequests, setSpecialRequests] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-
+  const handlePhoneChange = (e) => {
+    const value = e.target.value.replace(/\D/g, ""); // Remove all non-digit characters
+    const formattedPhone = value
+      .replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3")
+      .substring(0, 14); // Limit to (123) 456-7890 format
+    setClientPhone(formattedPhone);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -122,14 +128,13 @@ const PerformanceBooking = ({ token, userId, fetchBookings }) => {
     <div className="performanceform-group">
     <label htmlFor="clientPhone">Client Phone:</label>
     <input
-        id="clientPhone"
-        type="tel"
-        value={clientPhone}
-        onChange={(e) => setClientPhone(e.target.value)}
-        placeholder="e.g., 123-456-7890"
-        pattern="^\(\d{3}\) \d{3}-\d{4}$"
-        required
-    />
+    id="clientPhone"
+    type="tel"
+    value={clientPhone}
+    onChange={handlePhoneChange}
+    placeholder="e.g., (123) 456-7890"
+    required
+/>
 </div>
     
 

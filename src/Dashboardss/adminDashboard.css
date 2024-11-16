@@ -117,6 +117,16 @@
 
 }
 
+.overview-section h2 {
+  color: white;
+}
+/* adminDashboard.css */
+.monthly-revenue-chart {
+  width: 100%;
+  max-width:40rem; /* Set a max width to control the size */
+  height: 20rem;    /* Set a fixed height */
+  margin: 0 auto;   /* Center the chart */
+}
 .statuslabel {
   color: rgb(0, 0, 0);
   font-size: 1.5rem;
@@ -142,6 +152,7 @@
 .metric-card h3 {
   color:white;
   margin-bottom: 0.5rem;
+  font-size: 1.2rem;
 }
 
 .metric-card p {
@@ -190,7 +201,7 @@
 }
 
 /* Improved Layout for Bookings and Revenue */
-.bookings-section, .revenue-section, .client-stats-section {
+.revenue-section, .client-stats-section {
   background: var(--card-background);
   padding: 1rem;
   border: 1px solid var(--border-color);
@@ -199,10 +210,30 @@
   margin-bottom: 1rem;
   width: 60%;
   margin: auto;
+  max-height: 80vh; /* Limit the maximum height to 80% of the viewport height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  overflow-x: hidden; /* Hide horizontal scroll if not needed */
   text-align: center;
 }
-
-.bookings-list, .revenue-summary, .stats-list {
+.bookingheader {
+  font-family: monospace;
+  color: white;
+}
+.bookings-section {
+  background-color: rgba(0, 0, 0, 0.034);
+  color:rgba(255, 255, 255, 0);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 10px var(--shadow-color);
+  margin-bottom: 1rem;
+  width: 60%;
+  margin: auto;
+  max-height: 80vh; /* Limit the maximum height to 80% of the viewport height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  overflow-x: hidden; /* Hide horizontal scroll if not needed */
+  text-align: center;
+}
+.bookings-list,  .stats-list {
   list-style-type: none;
   padding: 0;
 }
@@ -213,7 +244,7 @@
   border-bottom: 1px solid var(--border-color);
 }
 
-.bookings-list li:last-child, .revenue-summary li:last-child, .stats-list li:last-child {
+.bookings-list li:last-child,  li:last-child, .stats-list li:last-child {
   border-bottom: none;
 }
 
@@ -277,4 +308,269 @@ canvas {
 
 .line-graph {
   background-color: rgb(255, 255, 255);
+}
+
+/* Styles for the bar graph container */
+.bar-graph {
+  background: linear-gradient(135deg, #1a73e8, #8ab4f8);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  margin: 20px auto;
+  max-width: 100%;
+  color: #fff;
+}
+
+/* Heading styles for the bar graph */
+.bar-graph h3 {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 10px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 1000px) {
+  .bar-graph {
+      padding: 15px;
+      max-width: 100%;
+  }
+
+  .bar-graph h3 {
+      font-size: 1.2rem;
+  }
+}
+
+/* Table Styles */
+.revenue-summary {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  font-size: 1.8rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Table Header */
+.revenue-summary h3 {
+  font-size: 2rem;
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Table List Items */
+.revenue-summary li {
+  padding: 20px;
+  border-bottom: 2px solid black;
+  color: #333;
+  text-align: left;
+}
+
+/* Last item should not have a bottom border */
+.revenue-summary li:last-child {
+  border-bottom: none;
+}
+
+/* Table List Item Text Styles */
+.revenue-summary li strong {
+  font-weight: bold;
+}
+
+/* Increased Font Size */
+.revenue-summary li {
+  font-size: 1.8rem;
+}
+
+
+.bookingss-table {
+  width: 100%;
+  overflow-x: auto;    margin-bottom: 40px;
+}
+/* Responsive Design for Mobile */
+@media (max-width: 600px) {
+  .revenue-summary {
+    width: 100%;
+    font-size: 1.5rem;
+  }
+
+  .revenue-summary li {
+    padding: 15px;
+  }
+}
+/* Chart Wrapper */
+
+/* Monthly Revenue Chart */
+.monthly-revenue-chart-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Legend and Axis Text Styles */
+.revenue-section h3 {
+  font-size: 2rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.intro {
+color: black;
+margin: auto;
+
+font-family:Georgia, 'Times New Roman', Times, serif ;
+}
+
+.adminheader {
+  background-color: rgba(255, 255, 255, 0.736);
+  text-align: center;
+  width: 60%;
+  margin: auto;
+}
+.welcome {
+  margin: auto;
+  font-size: 2rem;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+}
+
+.pintro {
+  margin: auto;
+  color:rgb(4, 3, 3);
+  font-size: 2rem;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+}
+/* Bookings Table Header */
+.bookingss-table th {
+  background: linear-gradient(to right, #ff7e5f, #feb47b);
+  color: white;
+  font-weight: bold;
+  text-align: left;
+  padding: 12px 15px;
+  border-bottom: 2px solid #ff5f5f;
+}
+.bookingss-table tr:nth-child(even) {
+  background: linear-gradient(to right, #8564e7, #7b60d1);
+  color: #fff;
+}
+
+/* Bookings Table Rows */
+.bookingss-table tr:nth-child(even) {
+  background: linear-gradient(to right, #8564e7, #7b60d1);
+  color: #fff;
+}
+
+
+.bookingss-table tr:nth-child(odd) {
+  background: linear-gradient(to right, #ffafbd, #ffc3a0);
+  color: #333;
+}
+
+/* Table Hover Effect */
+.bookingss-table tr:hover {
+  background: linear-gradient(to right, #ff5f5f, #ff9966);
+  color: white;
+  transition: background 0.3s ease;
+}
+
+/* Table Cells */
+.bookingss-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  font-size: 1rem;
+}
+
+/* Table Container */
+.bookingss-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 40px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+
+
+
+/* Save Button */
+.SaveMe {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.SaveMe:hover {
+  background-color: #218838;
+  box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
+}
+
+.SaveMe:active {
+  transform: scale(0.98);
+}
+
+/* Cancel Button */
+.CancelME {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.CancelME:hover {
+  background-color: #c82333;
+  box-shadow: 0 4px 10px rgba(220, 53, 69, 0.2);
+}
+
+.CancelME:active {
+  transform: scale(0.98);
+}
+
+/* Edit Button */
+.EditMe {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.EditMe:hover {
+  background-color: #e0a800;
+  box-shadow: 0 4px 10px rgba(255, 193, 7, 0.2);
+}
+
+.EditMe:active {
+  transform: scale(0.98);
+}
+
+/* Delete Button */
+.DeleteMe {
+  background-color: #ff4757;
+  color: #fff;
+}
+
+.DeleteMe:hover {
+  background-color: #e74c3c;
+  box-shadow: 0 4px 10px rgba(231, 76, 60, 0.2);
+}
+
+.DeleteMe:active {
+  transform: scale(0.98);
+}
+
+/* Button Focus Outline */
+button:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+/* Additional Styles for Accessibility */
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }

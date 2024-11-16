@@ -5,7 +5,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     width: 100vw;
-    height: 100vh;
+    height: 110vh;
     display: column;
     background-image: url('/signup.webp');  /* Path to the image */
     background-size: cover;      /* Ensures the image covers the entire background */
@@ -14,6 +14,10 @@
     background-attachment: fixed; /* Makes the background image fixed for a better full-screen effect */
 
 
+}
+
+.signup-link {
+    font-size: 1.2rem;
 }
 
 .signup h2 {
@@ -32,15 +36,28 @@
     font-size: 1.5rem;
 }
 
-.signup input, .signup select {
+ .signup select {
     padding: 10px;
     font-size: 1rem;
     background-color: pink;
     border: 1px solid #ccc;
     border-radius: 5px;
     text-align: center;
-    width: 50%;
+    width: 30%;
 
+}
+
+.signupinput {
+    padding: 10px;
+    font-size: 2rem;
+    background-color: pink;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    width: 30%;
+    margin: auto;
+    margin-left: 20rem;
+    color: black;
 }
 
 .signup .error {
@@ -53,7 +70,7 @@
     margin-bottom: 10px;
 }
 
-.signup button {
+.signupbutton {
     padding: 10px;
     font-size: 1rem;
     background-color: #0056b3;

@@ -18,24 +18,26 @@
 .signin form {
     display: flex;
     flex-direction: column;
-    font-size: 1.4rem;
-    width: 30%;
+    font-size: 1.5rem;
+    width: 20%;
     border-radius: 45px;
-    margin-left: 0rem;
-    background: linear-gradient(45deg, rgba(4, 0, 255, 0.687), rgba(255, 0, 0, 0.409), rgba(0, 0, 0, 0.334), rgba(128, 0, 128, 0.398), rgba(255, 192, 203, 0.465));
+    margin-left: 6rem;
+    background: linear-gradient(45deg,cyan, rgba(4, 0, 255, 0.699), rgba(255, 0, 0, 0.67),  rgba(128, 0, 128, 0.564), cyan);
     
 }
 
 .signin label {
     margin-bottom: 15px;
     font-size: 1.4rem;
+    font-weight: bold;
 }
 
-.signin input {
+.signininput {
     padding: 10px;
     font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
+    width: 95%;
 }
 
 .signin .error {
@@ -62,14 +64,21 @@
 
 .signup-link {
     margin-top: 15px;
-    font-size: 0.9rem;
+    font-size: 2rem;
 }
 
 .signup-link a {
     color: #0056b3;
     text-decoration: none;
+    font-size: 2rem;
+    color:white;
+    padding: 5px;
+    border-radius: 45px;
+    
+    background-color: rgb(42, 127, 254);
 }
 
 .signup-link a:hover {
     text-decoration: underline;
+    font-size: 2.5rem;
 }

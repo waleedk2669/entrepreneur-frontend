@@ -24,6 +24,15 @@ const BookingPage = () => {
         <div className="booking-container">
             <Navbar />
             <h2 className='bookingtitle'>Create New Bookings</h2>
+            <div class="apple-music-player">
+  <iframe
+    allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
+    frameborder="0"
+    height="175"
+    sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
+    src="https://embed.music.apple.com/us/album/celebration-single-version/1444107292?i=1444107530">
+  </iframe>
+</div>
 
 
             <div className="service-cards-container">

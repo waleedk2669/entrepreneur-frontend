@@ -16,6 +16,12 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <ul>
+
+                <li>
+                    <a href="https://achi11ean.github.io/Halcyon/" target="_blank" rel="noopener noreferrer">
+                        About Me
+                    </a>
+                </li>
                 <li>
                     <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : '')} end>Home</NavLink>
                 </li>
@@ -36,7 +42,7 @@ const Navbar = () => {
                 {/* Show 'Admin Dashboard' link only if the user is an admin */}
                 {user && user.user_type === 'admin' && (
                     <li>
-                        <NavLink to="/admin-dashboard" className={({ isActive }) => (isActive ? 'active' : '')}>Admin Dashboard</NavLink>
+                        <NavLink to="/admin-dashboard" className={({ isActive }) => (isActive ? 'active' : '')}> Dashboard</NavLink>
                     </li>
                 )}
 
@@ -52,8 +58,8 @@ const Navbar = () => {
                 {/* Show 'Sign Out' button only if the user is signed in */}
                 {user && (
                     <li>
-                        <button onClick={handleSignOut}>Sign Out</button>
-                    </li>
+    <button onClick={handleSignOut} className="nav-link">Sign Out</button>
+    </li>
                 )}
             </ul>
         </nav>

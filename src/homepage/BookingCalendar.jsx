@@ -8,8 +8,27 @@ const localizer = momentLocalizer(moment);
 
 const BookingCalendar = () => {
     const [events, setEvents] = useState([]);
+    const [selectedEvent, setSelectedEvent] = useState(null);
+
     const token = localStorage.getItem('token'); // Get token from localStorage
 
+    const [showDetails, setShowDetails] = useState(false); // Add showDetails state
+    const handleSelectEvent = (event) => {
+        setSelectedEvent(event);
+        setShowDetails(true);
+    };
+    const EventDetailsModal = () => (
+        <div className="modal">
+            <div className="modal-content">
+                <h3>Booking Details</h3>
+                <p><strong>Title:</strong> {selectedEvent?.title}</p>
+                <p><strong>Start:</strong> {selectedEvent?.start.toLocaleString()}</p>
+                <p><strong>End:</strong> {selectedEvent?.end.toLocaleString()}</p>
+                <p><strong>Type:</strong> {selectedEvent?.type}</p>
+                <button onClick={() => setShowDetails(false)}>Close</button>
+            </div>
+        </div>
+    );
     // Fetch all bookings data from the backend
     useEffect(() => {
         const fetchBookings = async () => {
@@ -64,7 +83,11 @@ const BookingCalendar = () => {
                 startAccessor="start"
                 endAccessor="end"
                 titleAccessor="title"
+                onSelectEvent={handleSelectEvent}
+
             />
+            {showDetails && <EventDetailsModal />}
+
         </div>
     );
 };

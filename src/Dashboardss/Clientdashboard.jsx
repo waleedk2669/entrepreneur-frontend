@@ -396,23 +396,64 @@ const ClientDashboard = () => {
       <Navbar />
       <h1>Welcome, {user?.username}!</h1>
 
+
+<div class="apple-music-player">
+  <iframe
+    allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
+    frameborder="0"
+    height="175"
+    sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
+    src="https://embed.music.apple.com/us/album/youre-my-best-friend/1440650428?i=1440650731">
+  </iframe>
+</div>
+
       {/* Overview Section */}
       <div className="dashboard-summary">
-        <h2>Summary</h2>
-        <p>Total Bookings: {overview?.total_bookings || 0}</p>
-        <p>Total Spent: ${overview?.total_spent?.toFixed(2) || "0.00"}</p>
-        <p>Upcoming Bookings: {overview?.upcoming_bookings || 0}</p>
-        <p>Average Guests: {overview?.average_guests || 0}</p>
-        <p>
-          Most Frequent Location: {overview?.most_frequent_location || "N/A"}
-        </p>
-        <div className="status-summary">
-          <p>Pending: {overview?.status_summary?.pending || 0}</p>
-          <p>Confirmed: {overview?.status_summary?.confirmed || 0}</p>
-          <p>Completed: {overview?.status_summary?.completed || 0}</p>
+    <h2>Summary</h2>
+    <div className="summaryy-cards">
+        <div className="metricc-card">
+            <h3>Total Bookings</h3>
+            <p>{overview?.total_bookings || 0}</p>
         </div>
-      </div>
+        <div className="metricc-card">
+            <h3>Total Spent</h3>
+            <p>${overview?.total_spent?.toFixed(2) || "0.00"}</p>
+        </div>
+        <div className="metricc-card">
+            <h3>Upcoming Bookings</h3>
+            <p>{overview?.upcoming_bookings || 0}</p>
+        </div>
+        <div className="metricc-card">
+            <h3>Average Guests</h3>
+            <p>{overview?.average_guests || 0}</p>
+        </div>
+        <div className="metricc-card">
+            <h3>Most Frequent Location</h3>
+            <p>{overview?.most_frequent_location || "N/A"}</p>
+        </div>
+    </div>
 
+    <h2 className="statuss">Status Summary</h2>
+    <div className="statuss-summary">
+        <div className="statuss-card">
+            <h4 className="statuslabel">Pending</h4>
+            <p className="statusdata">{overview?.status_summary?.pending || 0}</p>
+        </div>
+        <div className="statuss-card">
+            <h4 className="statuslabel">Confirmed</h4>
+            <p className="statusdata">{overview?.status_summary?.confirmed || 0}</p>
+        </div>
+        <div className="statuss-card">
+            <h4 className="statuslabel">Completed</h4>
+            <p className="statusdata">{overview?.status_summary?.completed || 0}</p>
+        </div>
+        <div className="statuss-card">
+            <h4 className="statuslabel">Canceled</h4>
+            <p className="statusdata">{overview?.status_summary?.canceled || 0}</p>
+        </div>
+    </div>
+</div>
+<div className="clienttables">
       {/* Regular Bookings Table */}
       <div className="bookings-table">
   <h2>All Regular Bookings</h2>
@@ -753,6 +794,7 @@ const ClientDashboard = () => {
         ) : (
           <p>No engineering bookings available.</p>
         )}
+      </div>
       </div>
     </div>
   );

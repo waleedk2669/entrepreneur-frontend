@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Homepage.css';
 import Navbar from './Navbar';
 import BookingCalendar from './BookingCalendar';
+import { FaStar, FaRegStar, FaStarHalfAlt } from 'react-icons/fa';
 
 const Homepage = () => {
     const [averageRating, setAverageRating] = useState(null);
@@ -33,6 +34,57 @@ const Homepage = () => {
         fetchAverageRating();
     }, []);
 
+
+    function StarRating({ rating }) {
+        const maxStars = 5;
+        const stars = [];
+        const starSize = 54; // Increase this value for bigger stars (e.g., 30, 36)
+      
+        for (let i = 0; i < maxStars; i++) {
+          if (i < Math.floor(rating)) {
+            stars.push(<FaStar key={i} color="#FFD700" size={starSize} />);
+          } else if (i < rating) {
+            stars.push(<FaStarHalfAlt key={i} color="#FFD700" size={starSize} />);
+          } else {
+            stars.push(<FaRegStar key={i} color="#FFD700" size={starSize} />);
+          }
+        }
+
+
+
+        const header = document.querySelector('.homepage-header');
+
+        useEffect(() => {
+            const header = document.querySelector('.homepage-header');
+    
+            const createFallingStars = () => {
+                for (let i = 0; i < 10; i++) {
+                    const star = document.createElement('div');
+                    star.classList.add('star');
+                    star.style.left = `${Math.random() * 100}%`;
+                    star.style.top = `-${Math.random() * 20}px`;
+                    header.appendChild(star);
+    
+                    // Remove the star after animation ends
+                    star.addEventListener('animationend', () => {
+                        star.remove();
+                    });
+                }
+            };
+    
+            // Add event listener for hover
+            header.addEventListener('mouseenter', createFallingStars);
+    
+            // Clean up event listener
+            return () => {
+                header.removeEventListener('mouseenter', createFallingStars);
+            };
+        }, []);
+      
+        return <div>{stars}</div>;
+      }
+      
+    
     return (
         <div className="homepage">
 
@@ -40,11 +92,9 @@ const Homepage = () => {
 
             <header className="homepage-header">
                 <h1 id="welcome">Jwhit Productions</h1>
-                <h2>Average Client Rating: {averageRating ? `${averageRating} / 5` : 'No ratings yet'}</h2>
-
             </header>
 
-            <section className="homepage-features">
+   <section className="homepage-features">
                 <div className="feature-cards">
                     <div className="feature-card">
                         <h3>Performance Booking</h3>
@@ -60,6 +110,28 @@ const Homepage = () => {
                     </div>
                 </div>
             </section>
+
+            <div className='homepagerating'>
+                <h2 className='ratingsheader'>Ratings:</h2>
+{averageRating ? <StarRating rating={averageRating} /> : 'No ratings yet'}
+</div>
+            <div className="apple-music-player">
+  <iframe
+    allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
+    frameBorder="0"
+    height="145"
+    style={{
+      width: '100%',
+      maxWidth: '660px',
+      overflow: 'hidden',
+      borderRadius: '10px'
+    }}
+    sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
+    src="https://embed.music.apple.com/us/album/mr-blue-sky/196426681?i=196426738"
+  ></iframe>
+</div>
+
+
             <section className="homepage-calendar">
                 <BookingCalendar />
             </section>

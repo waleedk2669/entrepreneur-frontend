@@ -7,6 +7,8 @@ import Navbar from '../homepage/Navbar';
 const Signup = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+
     const [userType, setUserType] = useState('client'); // Default user type
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
@@ -39,6 +41,9 @@ const Signup = () => {
         setShowPassword(!showPassword);
     };
 
+
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
@@ -49,6 +54,13 @@ const Signup = () => {
             setError('Password is too weak. Please meet the requirements.');
             return;
         }
+
+
+        if (password !== confirmPassword) {
+            setError('Passwords do not match. Please try again.');
+            return;
+        }
+
     
         try {
             const response = await fetch('http://localhost:5002/api/signup', {
@@ -90,6 +102,9 @@ const Signup = () => {
                     Username:
                     <br />
                     <input
+                        className='signupinput'
+                        style={{ width: '30%', margin: 'auto', fontSize: '1.5rem' }}
+
                         placeholder="Enter Username"
                         type="text"
                         value={username}
@@ -102,6 +117,9 @@ const Signup = () => {
                     Password:
                     <br />
                     <input
+                        className='signupinput'
+                        style={{ width: '30%', margin: 'auto', fontSize: '1.5rem', marginLeft: '10rem' }}
+
                         type={showPassword ? "text" : "password"}
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
@@ -110,6 +128,20 @@ const Signup = () => {
                     <button className="toggle-password" type="button" onClick={togglePasswordVisibility}>
                         {showPassword ? "Hide" : "Show"} Password
                     </button>
+                </label>
+
+
+                <label>
+                    Confirm Password:
+                    <br />
+                    <input
+                        className='signupinput'
+                        style={{ width: '30%', margin: 'auto', fontSize: '1.5rem' }}
+                        type={showPassword ? "text" : "password"}
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        required
+                    />
                 </label>
 
                 {/* Password Strength Meter */}
@@ -137,7 +169,7 @@ const Signup = () => {
                         <option value="admin">Admin</option>
                     </select>
                 </label>
-                <button type="submit">Sign Up</button>
+                <button className="signupbutton" type="submit">Sign Up</button>
                 <p className="signin-link">
                     Already have an account? <Link to="/signin">Sign In</Link>
                 </p>
