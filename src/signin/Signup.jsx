@@ -105,7 +105,7 @@ const Signup = () => {
                         className='signupinput'
                         style={{ width: '30%', margin: 'auto', fontSize: '1.5rem' }}
 
-                        placeholder="Enter Username"
+                        placeholder="Username"
                         type="text"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
@@ -118,16 +118,15 @@ const Signup = () => {
                     <br />
                     <input
                         className='signupinput'
-                        style={{ width: '30%', margin: 'auto', fontSize: '1.5rem', marginLeft: '10rem' }}
+                        style={{ width: '30%', margin: 'auto', fontSize: '1.5rem', marginLeft: 'auto' }}
+                        placeholder="Password"
 
                         type={showPassword ? "text" : "password"}
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
-                    <button className="toggle-password" type="button" onClick={togglePasswordVisibility}>
-                        {showPassword ? "Hide" : "Show"} Password
-                    </button>
+
                 </label>
 
 
@@ -136,13 +135,19 @@ const Signup = () => {
                     <br />
                     <input
                         className='signupinput'
+                        placeholder="Password"
+
                         style={{ width: '30%', margin: 'auto', fontSize: '1.5rem' }}
                         type={showPassword ? "text" : "password"}
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         required
                     />
+                    
                 </label>
+                <button className="toggle-password" type="button" onClick={togglePasswordVisibility}>
+                        {showPassword ? "Hide" : "Show"} Password
+                    </button>
 
                 {/* Password Strength Meter */}
                 <div className="password-strength">

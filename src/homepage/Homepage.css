@@ -20,13 +20,11 @@
         #ff6b6b, #ff9f43, #feca57, #1dd1a1, #48dbfb, #5aadff, #8e44ad
     );
     border-radius: 30px;
-    margin: 2rem auto;
-    width: 80%;
-    max-width: 1200px;
+    width: 100%;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     font-size: 1.1rem;
     color: #fff;
-    font-family: 'Segoe UI', Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: cursive;
     text-align: center;
     letter-spacing: 0.5px;
     position: relative;
@@ -42,12 +40,14 @@
 /* Star styles */
 .star {
     position: absolute;
-    width: 10px;
-    height: 10px;
+    width: 40px;
+    height: 40px;
     background: gold;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+
     border-radius: 50%;
     box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
-    animation: fall 1.5s linear forwards;
+    animation: fall 8s linear forwards;
 }
 
 /* Star fall animation */
@@ -73,7 +73,7 @@
 
 .homepage-contact {
     background:linear-gradient(45deg, black,green, rgb(159, 159, 46),brown, black, blue);
-    width: fit-content;
+    width: 90%;
     margin:auto;
     font-weight: bold;
     font-size: 1.2rem;
@@ -84,7 +84,7 @@
 
 }
 .homepage-contact h2 {
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: #ffffff;
 }
 
@@ -102,9 +102,10 @@
 
 #welcome {
     font-size: 3rem;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family:fantasy;
     border-radius: 45px;
     text-align: center;
+    font-weight: bolder;
     padding:0px;
 }
 #available {
@@ -119,11 +120,11 @@
 }
 
 .feature-cards {
-    display: flex;
+    display: column;
     justify-content: center;
-    gap: 20px;
+    gap: 30px;
     flex-wrap: wrap;
-    margin-top: 20px;
+    margin-left: 36rem;
 }
 
 .feature-card {
@@ -131,11 +132,13 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 5px;
-    width: 480px;
-    text-align: left;
+    width: 320px;
+    text-align: center;
     border: 2px solid pink;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.5s ease;
+    cursor: pointer;
 }
+
 
 .feature-card:hover {
     transform: scale(1.05);
@@ -154,44 +157,131 @@
 
 
 /* Container for the thin player */
-.spotify-thin-player {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    max-width: 100%;
-  }
+
   
   /* Thin iframe player */
-  .spotify-player {
-    width: 100%;
-    max-width: 35%;
-    height: 80px; /* Thin player height */
-    border: none;
-    border-radius: 8px;
-  }
-  
+
   .homepagerating {
-    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4, #023e8a, #00b4d8, #48cae4, #023e8a, #ff9a9e);
     background-size: cover;
     background-blend-mode: overlay;
     border-radius: 20px;
     color: #ffffff;
-    width: 50%;
-    margin: auto;
-    height: 150px;
-    font-weight: bold;
+    width: 35%;
+    height: 60px;
+    padding: 1rem;
+    padding-right: 12rem;
+    font-weight: bolder;
+    display: flex;
+    justify-content: center;
     text-align: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    background-image: url('/marble.webp');
+    background-image: url('/starry.webp');
     opacity: 0.95;
+    margin-top: 1rem;
+    margin-left: 46.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect */
+.homepagerating:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Falling star element */
+.star2 {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: gold;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+    animation: fall 8s linear forwards;
+}
+
+/* Falling star animation */
+@keyframes fallStar {
+    0% {
+        opacity: 1;
+        transform: translateY(-20px) scale(0.8);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(100px) scale(0.5);
+    }
+}
+
+/* Hover animation trigger */
+.homepagerating:hover .star2 {
+    animation-delay: calc(-1s * var(--i));
 }
 
 .ratingsheader{
+    
     font-family:cursive;
-    font-size: 2rem;
+    padding-right: 5rem;
+    padding-bottom: 4rem;
+    font-size: 3rem;
+    background-color: black;
+    display: flex;
     font-weight: bold;
-    background-color: rgba(0, 0, 0, 0.32);
+    border-radius: 45px;
+    margin-top: 0rem;
+    padding-left:5rem;
+    margin-left: 15rem;
+    margin-bottom: 1rem;
+}
+
+.ratemusic {
+    display: flex;
+    margin-left: 0rem;
+}
+
+.homepage-calendar {
+    display: flex;
+    margin-right:35rem;
+
+}
+
+
+
+
+
+
+/* Performance container */
+.performance {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Bartending container */
+
+/* Falling Emojis Animation */
+.falling-emoji {
+    position: absolute;
+    top: -50px;
+    font-size: 2rem;
+    animation: emojiFall 10s linear forwards;
+    opacity: 0.8;
+}
+
+/* Keyframes for the falling animation */
+@keyframes emojiFall {
+    0% {
+        top: -50px;
+        opacity: 0;
+        transform: translateX(0) rotate(0deg);
+    }
+    20% {
+        opacity: 1;
+    }
+    100% {
+        top: 100vh;
+        opacity: 0;
+        transform: translateX(100px) rotate(360deg);
+    }
 }

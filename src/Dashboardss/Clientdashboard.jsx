@@ -420,7 +420,7 @@ const ClientDashboard = () => {
             <p>${overview?.total_spent?.toFixed(2) || "0.00"}</p>
         </div>
         <div className="metricc-card">
-            <h3>Upcoming Bookings</h3>
+            <h3>Upcoming </h3>
             <p>{overview?.upcoming_bookings || 0}</p>
         </div>
         <div className="metricc-card">
@@ -428,7 +428,7 @@ const ClientDashboard = () => {
             <p>{overview?.average_guests || 0}</p>
         </div>
         <div className="metricc-card">
-            <h3>Most Frequent Location</h3>
+            <h3>Frequent Location</h3>
             <p>{overview?.most_frequent_location || "N/A"}</p>
         </div>
     </div>

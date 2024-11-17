@@ -11,6 +11,35 @@ const BookingPage = () => {
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
 
+
+
+    useEffect(() => {
+        const bookingTitle = document.querySelector("#bookingtitle");
+    
+        const createFallingBooks = () => {
+            for (let i = 0; i < 7; i++) {
+                const book = document.createElement("span");
+                book.classList.add("falling-book");
+                book.textContent = ["📚", "📖", "📕", "📙", "📗", "📘", "📓"][i % 7];
+                book.style.left = `${Math.random() * 100}%`;
+                bookingTitle.appendChild(book);
+    
+                // Remove the book after animation ends
+                book.addEventListener("animationend", () => {
+                    book.remove();
+                });
+            }
+        };
+    
+        // Drop books continuously every 5 seconds
+        const intervalId = setInterval(createFallingBooks, 500);
+    
+        // Cleanup function to clear the interval on component unmount
+        return () => {
+            clearInterval(intervalId);
+        };
+    }, []);
+    
     // Redirect to sign-in page if user is not signed in
     if (!isSignedIn || !token) {
         navigate('/signin');
@@ -23,17 +52,41 @@ const BookingPage = () => {
     return (
         <div className="booking-container">
             <Navbar />
-            <h2 className='bookingtitle'>Create New Bookings</h2>
-            <div class="apple-music-player">
+            <div id="bookingtitle">
+    Book Your Spot Now!
+</div>
+            <section>
+            <div class="apple-music-player2">
   <iframe
     allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
-    frameborder="0"
-    height="175"
-    sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
+    frameBorder="0"
+    height="149"
+    style={{
+        width: "1150px",
+        overflow: "hidden",
+        borderRadius: "10px",
+      }}    sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
     src="https://embed.music.apple.com/us/album/celebration-single-version/1444107292?i=1444107530">
   </iframe>
+  <div class="apple-music-player2">
+  <iframe
+    allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
+    frameBorder="0"
+    height="149"
+    style={{
+        width: "1150px",
+      overflow: "hidden",
+      borderRadius: "10px",
+    }}
+    sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
+    src="https://embed.music.apple.com/us/album/takin-care-of-business/1446015797?i=1446015927"
+  ></iframe>
 </div>
 
+</div>
+
+
+</section>
 
             <div className="service-cards-container">
             <div className="service-card">

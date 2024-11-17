@@ -19,6 +19,15 @@
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
+  .apple-music-player2 {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    margin-left: 4.5rem;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
   
 .booking-forms-container {
     display: flex;
@@ -32,16 +41,7 @@
 .spotify-bookingR-player{
 margin-left: 11rem;
 }
-.bookingtitle {
-    margin: auto;
-    text-align: center;
-    background-color: white;
-    color: black;
-    font-size: 3rem;
-    margin-bottom: 2rem;
-    font-family: cursive;
-    font-weight: bolder;
-}
+
 .booking-forms-container > div {
     flex: 1;
     max-width: 70rem; /* Limit the width of each form card */
@@ -58,9 +58,10 @@ margin-left: 11rem;
 
 /* Individual Service Card Styling */
 .service-card {
-    max-width: 60rem;
-    margin:auto;
-    max-height: 400px; /* Set a maximum height for the card */
+    width: 69.5rem;
+    margin-left:1rem;
+    margin-right: 3rem;
+    max-height: 200px; /* Set a maximum height for the card */
     padding: 20px;
     font-size: 1.3rem;
     border-radius: 10px;
@@ -119,4 +120,56 @@ margin-left: 11rem;
 .service-card p {
     font-weight: bold;
     color: #010403;
+}
+
+
+#bookingtitle {
+    margin: auto;
+    text-align: center;
+    background: linear-gradient(135deg, #ff6ec7, #ffcc33, #00c9ff, #ff3b30, #34d399);
+    height: 6rem;
+    color: black;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    font-family: cursive;
+    font-weight: bolder;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid white;
+}
+
+/* Falling Books Animation */
+/* Falling Books Animation */
+.falling-book {
+    position: absolute;
+    top: -100px;
+    font-size: 2rem;
+    animation: fall 6s linear forwards; /* Updated to use 'forwards' to end the animation properly */
+    opacity: 0.8;
+}
+
+/* Keyframes for the fall animation */
+@keyframes fall {
+    0% {
+        top: -100px;
+        opacity: 0;
+        transform: rotate(0deg);
+    }
+    20% {
+        opacity: 1;
+    }
+    100% {
+        top: 100vh;
+        opacity: 0;
+        transform: rotate(360deg);
+    }
+}
+
+/* Random Book Colors */
+.falling-book:nth-child(odd) {
+    color: #ff6347;
+}
+
+.falling-book:nth-child(even) {
+    color: #4682b4;
 }

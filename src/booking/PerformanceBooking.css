@@ -1,10 +1,15 @@
 /* Card styling */
+
 .performancecard {
+    max-width: 800px;
     width: 100%;
     margin: 20px;
     padding: 20px;
     overflow-y: auto; /* Enable vertical scrolling */
     max-height: 40rem;
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: #007BFF #f0f0f0; /* Custom scrollbar colors */
+
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     border-radius: 15px;
     background: linear-gradient(to bottom right, #8cabff, rgb(158, 255, 158), #ff7070);
@@ -62,7 +67,7 @@ h3 {
     color:black;
     text-align: center;
     margin: auto;
-    font-size: 1.2rem;
+    font-size:2rem;
 
 }
 .performanceform-group select {
@@ -138,4 +143,49 @@ h3 {
     .submit-button {
         padding: 10px;
     }
+}
+
+#clientPhone {
+    font-size: 1.5rem;
+}
+
+#clientEmail {
+    font-size: 1.5rem;
+}
+#clientName {
+    font-size: 1.5rem;
+}
+
+#eventName {
+    font-size: 1.5rem;
+}
+
+#eventDate {
+    font-size: 1.5rem;
+    width: 100%;
+    margin: auto;
+}
+
+#location {
+    font-size: 1.5rem;
+    width: 100%;
+}
+
+#numberOfGuests {
+    font-size: 1.5rem;
+}
+
+#price {
+    font-size: 1.5rem;
+
+}
+
+#specialRequests {
+    font-size: 1.5rem;
+    width: 98%;
+}
+#Pheader {
+    font-family: cursive;
+    font-weight: bold;
+    color:black;
 }

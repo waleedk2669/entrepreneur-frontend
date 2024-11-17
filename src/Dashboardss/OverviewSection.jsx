@@ -219,7 +219,7 @@ const OverviewSection = ({ data, dailyAverageGuests, dailyRegistrations, dailyAc
             <h2>Overview Metrics</h2>
             <div className="overview-metrics">
                 <div className="metric-card">
-                    <h3>Total Bookings</h3>
+                    <h3>Bookings</h3>
                     <p>{total_bookings}</p>
                 </div>
                 <div className="metric-card">
@@ -232,15 +232,15 @@ const OverviewSection = ({ data, dailyAverageGuests, dailyRegistrations, dailyAc
                     <p>{active_clients}</p>
                 </div>
                 <div className="metric-card">
-                    <h3 className='cardname'>Average Rating</h3>
+                    <h3 className='cardname'>Avg Ratings</h3>
                     <p>{average_rating}/5</p>
                 </div>
                 <div className="metric-card">
-                    <h3 className='cardname'>Top Location</h3>
+                    <h3 className='cardname'>Location</h3>
                     <p>{top_location}</p>
                 </div>
                 <div className="metric-card">
-                    <h3 className='cardname'>Average Guests</h3>
+                    <h3 className='cardname'>Avg Guests</h3>
                     <p>{average_guests}</p>
                 </div>
                 

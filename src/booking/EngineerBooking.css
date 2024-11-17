@@ -10,7 +10,10 @@
     border-radius: 15px;
     background: linear-gradient(to bottom right, #09e2ff, #fb5454);
     transition: transform 0.3s, box-shadow 0.3s;
-    max-height: 40rem;
+    max-height: 38.2rem;
+    overflow-y: auto; /* Enable vertical scrolling */
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: #007BFF #f0f0f0; /* Custom scrollbar colors */
 }
 
 .engineeringcard:hover {
@@ -19,11 +22,13 @@
 }
 
 /* Header styling */
-h3 {
+#EnB {
     text-align: center;
-    color: #00796b;
-    font-size: 1.6rem;
+    color: black;
+    font-weight: bolder;
+    font-size: 2rem;
     margin-bottom: 20px;
+    font-family: cursive;
 }
 
 /* Form styling */
@@ -31,7 +36,6 @@ h3 {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    overflow-y: auto; /* Enable vertical scrolling */
     max-height: 30rem;
     padding: 25px;
 
@@ -98,7 +102,7 @@ h3 {
     font-size: 1.5rem;
     font-weight: bold;
     cursor: pointer;
-    width: 92%;
+    width: 98%;
     transition: background-color 0.3s, transform 0.2s;
 }
 
@@ -124,3 +128,37 @@ h3 {
         padding: 12px;
     }
 }
+
+
+#projectName {
+    font-size: 1.5rem;
+}
+#projectManager {
+    font-size: 1.5rem;
+}
+#contactEmail {
+    font-size: 1.5rem;
+}
+
+#contactPhone {
+    font-size: 1.5rem;
+}
+
+#serviceType {
+    font-size: 1.2rem;
+    width: 100%;
+}
+
+#projectStartDate {
+    font-size: 1.5rem;
+}
+
+#projectEndDate {
+    font-size: 1.5rem;
+}
+
+#projectDescription {
+    font-size: 1.2rem;
+    width: 100%;
+}
+

@@ -94,7 +94,7 @@ const PerformanceBooking = ({ token, userId, fetchBookings }) => {
 
   return (
     <div className="performancecard">
-      <h3>Performance Booking</h3>
+      <h3 id="Pheader">Performance Booking</h3>
       {error && <p style={{ color: "red" }}>{error}</p>}
       {success && <p style={{ color: "green" }}>{success}</p>}
 
@@ -226,8 +226,8 @@ const PerformanceBooking = ({ token, userId, fetchBookings }) => {
     <input
         id="price"
         type="number"
-        step="5" // Increment by $5
-        min="50" // Start at $50
+        step="10" // Increment by $5
+        min="70" // Start at $50
         value={price}
         onChange={(e) => setPrice(parseFloat(e.target.value) || "")}
         required

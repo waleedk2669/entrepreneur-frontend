@@ -6,6 +6,8 @@ import ClientStatsSection from "./ClientStatsSection";
 import { useAuth } from "../AuthContext";
 import "./adminDashboard.css";
 import Navbar from "../homepage/Navbar";
+import Messages from "./Messages";
+
 
 const AdminDashboard = () => {
   const { user, isSignedIn } = useAuth();
@@ -162,10 +164,10 @@ const AdminDashboard = () => {
   <iframe
     allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
     frameBorder="0"
-    height="175"
+    height="149"
     style={{
       width: '100%',
-      maxWidth: '660px',
+      maxWidth: '860px',
       overflow: 'hidden',
       borderRadius: '10px'
     }}
@@ -203,6 +205,13 @@ const AdminDashboard = () => {
         >
           Client Stats
         </div>
+
+        <div
+    className={`tab ${activeTab === "messages" ? "active" : ""}`}
+    onClick={() => setActiveTab("messages")}
+  >
+    Messages
+  </div>
       </div>
 
       {/* Section Cards (Only one section visible based on active tab) */}
@@ -244,6 +253,9 @@ const AdminDashboard = () => {
           statusSummary={dashboardData.status_summary}
         />
       </div>
+      <div className={`card-section ${activeTab === "messages" ? "active" : ""}`}>
+  <Messages />
+</div>
     </div>
   );
 };

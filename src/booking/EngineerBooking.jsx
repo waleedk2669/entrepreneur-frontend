@@ -80,7 +80,7 @@ const EngineerBooking = ({ token, userId, fetchBookings }) => {
 
     return (
         <div className="engineeringcard">
-            <h3>Engineering Booking</h3>
+            <h3 id='EnB'>Engineering Booking</h3>
             {error && <p style={{ color: 'red' }}>{error}</p>}
             {success && <p style={{ color: 'green' }}>{success}</p>}
 

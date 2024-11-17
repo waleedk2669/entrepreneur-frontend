@@ -23,24 +23,37 @@
 .signup h2 {
     font-size: 2rem;
     margin-bottom: 20px;
-    margin-top: 20rem;
+    margin-top: 10rem;
+    
 }
 
 .signup form {
     display: flex;
     flex-direction: column;
+    width: fit-content;
+    margin: auto;
+    background: linear-gradient(135deg, #ff008078, #ffcc0076, #00ff995f, #007bffa4, #ff440076, #892be282, #00ffcc84, #ff006684);
+
 }
 
 .signup label {
     margin-bottom: 15px;
     font-size: 1.5rem;
+    padding: 0rem;
+    width: 35rem;
+    font-weight: 700;
+    border-radius: 5px;
+    margin: auto;
+    text-decoration: underline;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
  .signup select {
     padding: 10px;
-    font-size: 1rem;
+    font-size: 1.5rem;
     background-color: pink;
     border: 1px solid #ccc;
+    color: black;
     border-radius: 5px;
     text-align: center;
     width: 30%;
@@ -56,7 +69,6 @@
     text-align: center;
     width: 30%;
     margin: auto;
-    margin-left: 20rem;
     color: black;
 }
 
@@ -72,7 +84,7 @@
 
 .signupbutton {
     padding: 10px;
-    font-size: 1rem;
+    font-size: 2em;
     background-color: #0056b3;
     color: white;
     border: none;
@@ -90,7 +102,7 @@
 .signin-link {
     margin-top: 20px;
     font-size: 1.2rem;
-    background-color: rgb(2, 2, 2);
+    background-color: rgba(0, 0, 0, 0.744);
     width: fit-content;
     margin: auto;
     padding: 15px;
@@ -107,7 +119,6 @@
     text-decoration: underline;
 }
 .password-strength {
-    display: flex;
     align-items: center;
     margin: auto;
 }
@@ -156,7 +167,7 @@
     margin: auto;
     padding:5px;
     border-radius: 25px;
-    display: flex;
+    display: column;
     background-color: rgb(0, 0, 0);
     font-weight: 700;
 
@@ -175,7 +186,7 @@
 }
 
 .password-requirements li {
-    display: inline;
+    display: column;
     padding: 5px;
     align-items: center;
     margin-bottom: 5px;
@@ -186,4 +197,9 @@
 .password-requirements li.invalid { color: red; }
 
 
+.toggle-password {
+    width: 30rem;
+    margin: auto;
+    
+}
 
