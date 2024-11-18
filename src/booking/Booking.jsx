@@ -74,7 +74,7 @@ const BookingPage = () => {
     frameBorder="0"
     height="149"
     style={{
-        width: "1150px",
+      width: "1150px",
       overflow: "hidden",
       borderRadius: "10px",
     }}

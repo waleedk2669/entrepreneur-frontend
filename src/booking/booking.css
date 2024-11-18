@@ -22,8 +22,7 @@
   .apple-music-player2 {
     display: flex;
     align-items: center;
-    gap: .5rem;
-    margin-left: 4.5rem;
+    margin-left: 13.5rem;
     padding: 10px;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

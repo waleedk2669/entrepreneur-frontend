@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './SignIn.css';
+import './signIn.css';
 import Navbar from '../homepage/Navbar';
 import { useAuth } from '../AuthContext';
 

@@ -4,6 +4,9 @@ import Navbar from "../homepage/Navbar";
 import { useAuth } from "../AuthContext";
 
 const ClientDashboard = () => {
+
+  const stripePaymentLink = "https://buy.stripe.com/test_payment_link"; // Replace with your actual Stripe payment link
+
     const { user, token, signOut, loading } = useAuth(); // Use loading from AuthContext
     const [overview, setOverview] = useState({});
   const [regularBookings, setRegularBookings] = useState([]);
@@ -451,6 +454,16 @@ const ClientDashboard = () => {
             <h4 className="statuslabel">Canceled</h4>
             <p className="statusdata">{overview?.status_summary?.canceled || 0}</p>
         </div>
+        <div className="payment-button-container">
+        <h2>Ready to Confirm Your Booking?</h2>
+        <button
+          className="payment-button"
+          onClick={() => window.open(stripePaymentLink, "_blank")}
+        >
+          Proceed to Payment
+        </button>
+      </div>
+
     </div>
 </div>
 <div className="clienttables">
