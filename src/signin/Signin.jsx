@@ -4,6 +4,7 @@ import "./Signin.css";
 import Navbar from "../homepage/Navbar";
 import { useAuth } from "../AuthContext";
 
+const apiUrl = import.meta.env.VITE_API_URL;
 const SignIn = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -25,7 +26,7 @@ const SignIn = () => {
     }
 
     try {
-      const response = await fetch(`/api/signin`, {
+      const response = await fetch(`${apiUrl}/api/signin`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

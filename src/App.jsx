@@ -7,6 +7,7 @@ import AdminDashboard from "./Dashboardss/AdminDashboard";
 import ClientDashboard from "./Dashboardss/Clientdashboard";
 
 const App = () => {
+  // console.log(process.env.VITE_API_URL);
   return (
     <Router>
       <Routes>

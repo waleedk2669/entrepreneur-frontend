@@ -8,7 +8,6 @@ import "./adminDashboard.css";
 import Navbar from "../homepage/Navbar";
 import Messages from "./Messages";
 
-
 const AdminDashboard = () => {
   const { user, isSignedIn } = useAuth();
 
@@ -43,14 +42,17 @@ const AdminDashboard = () => {
       setError(null);
 
       try {
-        const response = await fetch("/api/admin-dashboard", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          credentials: "include",
-        });
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/admin-dashboard`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+            credentials: "include",
+          }
+        );
 
         if (!response.ok) {
           throw new Error("Failed to fetch dashboard data");
@@ -60,14 +62,17 @@ const AdminDashboard = () => {
         console.log("Fetched Dashboard Data:", data);
 
         // Fetch all regular bookings
-        const allBookingsResponse = await fetch("/api/all-regular-bookings", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          credentials: "include",
-        });
+        const allBookingsResponse = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/all-regular-bookings`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+            credentials: "include",
+          }
+        );
 
         if (!allBookingsResponse.ok) {
           throw new Error("Failed to fetch all regular bookings");
@@ -156,28 +161,25 @@ const AdminDashboard = () => {
     <div className="admin-dashboard">
       <Navbar />
       <div className="adminheader">
-      <h1 className="intro">Admin Dashboard</h1>
-      <h2 className="welcome">Welcome, {user.username}</h2>
-      <p className="pintro">User Type: {user.user_type}</p>
-      <p className="pintro">Last Login: {user.last_login}</p>
-      <div className="apple-music-player">
-  <iframe
-    allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
-    frameBorder="0"
-    height="149"
-    style={{
-      width: '100%',
-      maxWidth: '860px',
-      overflow: 'hidden',
-      borderRadius: '10px'
-    }}
-    sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
-    src="https://embed.music.apple.com/us/album/money/1439777399?i=1439777400"
-  ></iframe>
-</div>
-
-
-
+        <h1 className="intro">Admin Dashboard</h1>
+        <h2 className="welcome">Welcome, {user.username}</h2>
+        <p className="pintro">User Type: {user.user_type}</p>
+        <p className="pintro">Last Login: {user.last_login}</p>
+        <div className="apple-music-player">
+          <iframe
+            allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
+            frameBorder="0"
+            height="149"
+            style={{
+              width: "100%",
+              maxWidth: "860px",
+              overflow: "hidden",
+              borderRadius: "10px",
+            }}
+            sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
+            src="https://embed.music.apple.com/us/album/money/1439777399?i=1439777400"
+          ></iframe>
+        </div>
       </div>
       {/* Tabs for different sections */}
       <div className="tabs">
@@ -207,11 +209,11 @@ const AdminDashboard = () => {
         </div>
 
         <div
-    className={`tab ${activeTab === "messages" ? "active" : ""}`}
-    onClick={() => setActiveTab("messages")}
-  >
-    Messages
-  </div>
+          className={`tab ${activeTab === "messages" ? "active" : ""}`}
+          onClick={() => setActiveTab("messages")}
+        >
+          Messages
+        </div>
       </div>
 
       {/* Section Cards (Only one section visible based on active tab) */}
@@ -253,9 +255,11 @@ const AdminDashboard = () => {
           statusSummary={dashboardData.status_summary}
         />
       </div>
-      <div className={`card-section ${activeTab === "messages" ? "active" : ""}`}>
-  <Messages />
-</div>
+      <div
+        className={`card-section ${activeTab === "messages" ? "active" : ""}`}
+      >
+        <Messages />
+      </div>
     </div>
   );
 };

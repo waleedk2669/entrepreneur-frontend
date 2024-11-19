@@ -53,15 +53,18 @@ const PerformanceBooking = ({ token, userId, fetchBookings, showPopup }) => {
     };
 
     try {
-      const response = await fetch("/api/bookings", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        credentials: "include",
-        body: JSON.stringify(body),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/bookings`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          credentials: "include",
+          body: JSON.stringify(body),
+        }
+      );
 
       const data = await response.json();
 
