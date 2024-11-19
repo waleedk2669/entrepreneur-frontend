@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./Messages.css";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const Messages = () => {
   const [messages, setMessages] = useState([]);
   const [error, setError] = useState(null);
@@ -10,7 +12,7 @@ const Messages = () => {
     const token = localStorage.getItem("token");
 
     try {
-      const response = await fetch("http://localhost:5000/api/admin/messages", {
+      const response = await fetch(`${apiUrl}/api/admin/messages`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -35,7 +37,7 @@ const Messages = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/admin/messages/${messageId}`,
+        `${apiUrl}/api/admin/messages/${messageId}`,
         {
           method: "DELETE",
           headers: {

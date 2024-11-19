@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useAuth } from "../AuthContext";
 import "./adminDashboard.css";
 
+const apiUrl = import.meta.env.VITE_API_URL;
 const BookingsSection = ({
   recentBookings = [],
   recentEngineeringBookings = [],
@@ -46,15 +47,12 @@ const BookingsSection = ({
     if (!confirmDelete) return;
 
     try {
-      const response = await fetch(
-        `http://localhost:5000/api/bookings/${bookingId}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await fetch(`${apiUrl}/api/bookings/${bookingId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       const data = await response.json();
 
@@ -96,7 +94,7 @@ const BookingsSection = ({
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/engineeringbookings/${bookingId}`,
+        `${apiUrl}/api/engineeringbookings/${bookingId}`,
         {
           method: "DELETE",
           headers: {
@@ -183,7 +181,7 @@ const BookingsSection = ({
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/engineeringbookings/${editingEngineeringBookingId}`,
+        `${apiUrl}/api/engineeringbookings/${editingEngineeringBookingId}`,
         {
           method: "PATCH",
           headers: {
@@ -306,7 +304,7 @@ const BookingsSection = ({
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/bookings/${editingBookingId}`,
+        `${apiUrl}/api/bookings/${editingBookingId}`,
         {
           method: "PATCH",
           headers: {

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./SendMessage.css";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const SendMessage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -28,7 +30,7 @@ const SendMessage = () => {
 
     // Send message to the backend
     try {
-      const response = await fetch("http://localhost:5000/api/messages", {
+      const response = await fetch(`${apiUrl}/api/messages`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

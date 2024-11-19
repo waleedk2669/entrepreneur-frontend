@@ -4,6 +4,8 @@ import Navbar from "../homepage/Navbar";
 import { useAuth } from "../AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const ClientDashboard = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -66,8 +68,8 @@ const ClientDashboard = () => {
     try {
       const endpoint =
         type === "regular"
-          ? `http://localhost:5000/api/bookings/${bookingId}`
-          : `http://localhost:5000/api/engineeringbookings/${bookingId}`;
+          ? `${apiUrl}/api/bookings/${bookingId}`
+          : `${apiUrl}/api/engineeringbookings/${bookingId}`;
 
       const response = await fetch(endpoint, {
         method: "PATCH",
@@ -111,17 +113,14 @@ const ClientDashboard = () => {
   };
   const handlePayment = async (bookingId, price, type) => {
     try {
-      const response = await fetch(
-        "http://localhost:5000/create-checkout-session",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          body: JSON.stringify({ booking_id: bookingId, price, type }),
-        }
-      );
+      const response = await fetch(`${apiUrl}/create-checkout-session`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify({ booking_id: bookingId, price, type }),
+      });
 
       const data = await response.json();
 
@@ -245,7 +244,7 @@ const ClientDashboard = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/engineeringbookings/${bookingId}`,
+        `${apiUrl}/api/engineeringbookings/${bookingId}`,
         {
           method: "PATCH",
           headers: {
@@ -335,17 +334,14 @@ const ClientDashboard = () => {
     }
 
     try {
-      const response = await fetch(
-        `http://localhost:5000/api/bookings/${bookingId}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(updateData),
-        }
-      );
+      const response = await fetch(`${apiUrl}/api/bookings/${bookingId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(updateData),
+      });
 
       const data = await response.json();
 
@@ -374,16 +370,13 @@ const ClientDashboard = () => {
     if (token) {
       const fetchData = async () => {
         try {
-          const response = await fetch(
-            "http://localhost:5000/api/client-dashboard",
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
+          const response = await fetch(`${apiUrl}/api/client-dashboard`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          });
 
           if (response.status === 401) {
             signOut();
@@ -501,8 +494,8 @@ const ClientDashboard = () => {
     try {
       const endpoint =
         type === "regular"
-          ? `http://localhost:5000/api/bookings/${bookingId}/rate`
-          : `http://localhost:5000/api/engineeringbookings/${bookingId}/rate`;
+          ? `${apiUrl}/api/bookings/${bookingId}/rate`
+          : `${apiUrl}/api/engineeringbookings/${bookingId}/rate`;
 
       const response = await fetch(endpoint, {
         method: "PATCH",

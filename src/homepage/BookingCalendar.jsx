@@ -5,6 +5,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import "./bookingCalendar.css";
 
 const localizer = momentLocalizer(moment);
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const BookingCalendar = () => {
   const [events, setEvents] = useState([]);
@@ -41,17 +42,14 @@ const BookingCalendar = () => {
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:5000/api/calendar-bookings",
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              ...(token && { Authorization: `Bearer ${token}` }), // Include token if it exists
-            },
-            credentials: "include", // Include cookies if needed
-          }
-        );
+        const response = await fetch(`${apiUrl}/api/calendar-bookings`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            ...(token && { Authorization: `Bearer ${token}` }), // Include token if it exists
+          },
+          credentials: "include", // Include cookies if needed
+        });
 
         const data = await response.json();
 

@@ -5,20 +5,19 @@ import BookingCalendar from "./BookingCalendar";
 import { FaStar, FaRegStar, FaStarHalfAlt } from "react-icons/fa";
 import SendMessage from "./SendMessage";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const Homepage = () => {
   const [averageRating, setAverageRating] = useState(null);
   useEffect(() => {
     const fetchAverageRating = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:5000/api/average-rating",
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
+        const response = await fetch(`${apiUrl}/api/average-rating`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
 
         const data = await response.json();
 
