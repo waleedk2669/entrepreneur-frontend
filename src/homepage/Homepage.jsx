@@ -11,7 +11,7 @@ const Homepage = () => {
     const fetchAverageRating = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5002/api/average-rating",
+          "http://localhost:5000/api/average-rating",
           {
             method: "GET",
             headers: {

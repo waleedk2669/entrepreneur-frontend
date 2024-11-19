@@ -10,7 +10,7 @@ const Messages = () => {
     const token = localStorage.getItem("token");
 
     try {
-      const response = await fetch("http://localhost:5002/api/admin/messages", {
+      const response = await fetch("http://localhost:5000/api/admin/messages", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -34,13 +34,16 @@ const Messages = () => {
     const token = localStorage.getItem("token");
 
     try {
-      const response = await fetch(`http://localhost:5002/api/admin/messages/${messageId}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        `http://localhost:5000/api/admin/messages/${messageId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       const data = await response.json();
       if (response.ok) {
@@ -68,11 +71,22 @@ const Messages = () => {
         <ul className="messages-list">
           {messages.map((message) => (
             <li key={message.id} className="message-item">
-              <p><strong>Name:</strong> {message.name}</p>
-              <p><strong>Email:</strong> {message.email}</p>
-              <p><strong>Message:</strong> {message.content}</p>
-              <p><strong>Created At:</strong> {message.created_at}</p>
-              <button onClick={() => handleDelete(message.id)} className="delete-button">
+              <p>
+                <strong>Name:</strong> {message.name}
+              </p>
+              <p>
+                <strong>Email:</strong> {message.email}
+              </p>
+              <p>
+                <strong>Message:</strong> {message.content}
+              </p>
+              <p>
+                <strong>Created At:</strong> {message.created_at}
+              </p>
+              <button
+                onClick={() => handleDelete(message.id)}
+                className="delete-button"
+              >
                 Delete
               </button>
             </li>

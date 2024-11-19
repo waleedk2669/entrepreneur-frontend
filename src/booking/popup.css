@@ -1,0 +1,72 @@
+/* Popup Overlay - full-screen overlay to center the popup */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* Popup content box */
+.popup-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  text-align: center;
+  position: relative;
+}
+
+/* Cross icon for closing the popup */
+.popup-close-btn {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+}
+.popup-close-btn:hover {
+  background: none;
+  color: #666;
+}
+
+/* Styling for the popup message */
+.popup-message h2 {
+  font-size: 18px;
+  margin: 20px 0 10px;
+  color: black;
+}
+
+.popup-message p {
+  font-size: 14px;
+  color: #666;
+  text-align: left;
+}
+
+/* Button to go to the dashboard - centered */
+.popup-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.popup-dashboard-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.popup-dashboard-btn:hover {
+  background-color: #0056b3;
+}

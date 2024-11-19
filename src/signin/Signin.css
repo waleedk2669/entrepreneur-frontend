@@ -1,84 +1,85 @@
 .signin {
-    /* margin: 50px auto; */
-    border-radius: 10px;
-    background-color: #9eeb46;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 100vw;
-    height: 100vh;
-    /* display: flex; */
-    background-image: url('/signupsis.webp');  /* Path to the image */
-    background-size: cover;      /* Ensures the image covers the entire background */
-    background-position: center; /* Centers the image */
-    background-repeat: no-repeat; 
-
+  /* margin: 50px auto; */
+  border-radius: 10px;
+  background-color: #9eeb46;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100vw;
+  height: 100vh;
+  /* display: flex; */
+  background-image: url("/signupsis.webp"); /* Path to the image */
+  background-size: cover; /* Ensures the image covers the entire background */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat;
 }
 
-
 .signin form {
-    display: flex;
-    flex-direction: column;
-    font-size: 1.5rem;
-    width: 20%;
-    border-radius: 45px;
-    margin-left: 6rem;
-    background: linear-gradient(45deg,cyan, rgba(4, 0, 255, 0.699), rgba(255, 0, 0, 0.67),  rgba(128, 0, 128, 0.564), cyan);
-    
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
+  max-width: 400px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin: auto;
+  background: linear-gradient(
+    45deg,
+    cyan,
+    rgba(4, 0, 255, 0.699),
+    rgba(255, 0, 0, 0.67),
+    rgba(128, 0, 128, 0.564),
+    cyan
+  );
 }
 
 .signin label {
-    margin-bottom: 15px;
-    font-size: 1.4rem;
-    font-weight: bold;
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+  font-weight: bold;
 }
 
 .signininput {
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 95%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 95%;
 }
 
 .signin .error {
-    color: red;
-    margin-bottom: 10px;
+  color: red;
+  margin-bottom: 10px;
 }
 
 .signin button {
-    padding: 10px;
-    font-size: 1.4rem;
-    background-color: #0056b3;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    width: 40%;
-    margin: auto;
-    cursor: pointer;
-
+  padding: 10px;
+  font-size: 1.4rem;
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  width: 40%;
+  margin: auto;
+  cursor: pointer;
 }
 
 .signin button:hover {
-    background-color: #004494;
+  background-color: #004494;
 }
 
 .signup-link {
-    margin-top: 15px;
-    font-size: 2rem;
+  margin-top: 15px;
+  font-size: 1rem;
 }
 
 .signup-link a {
-    color: #0056b3;
-    text-decoration: none;
-    font-size: 2rem;
-    color:white;
-    padding: 5px;
-    border-radius: 45px;
-    
-    background-color: rgb(42, 127, 254);
+  color: #0056b3;
+  text-decoration: none;
+  color: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  background-color: rgb(42, 127, 254);
 }
 
 .signup-link a:hover {
-    text-decoration: underline;
-    font-size: 2.5rem;
+  text-decoration: underline;
 }

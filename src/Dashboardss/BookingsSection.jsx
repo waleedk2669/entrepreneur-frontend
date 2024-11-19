@@ -34,19 +34,20 @@ const BookingsSection = ({
     return new Date(date).toLocaleString("en-US", options).replace(" at ", " ");
   };
 
-
   const handleRegularDeleteClick = async (bookingId) => {
     if (!token) {
       console.error("No token found. Please sign in.");
       return;
     }
-  
-    const confirmDelete = window.confirm("Are you sure you want to delete this regular booking?");
+
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this regular booking?"
+    );
     if (!confirmDelete) return;
-  
+
     try {
       const response = await fetch(
-        `http://localhost:5002/api/bookings/${bookingId}`,
+        `http://localhost:5000/api/bookings/${bookingId}`,
         {
           method: "DELETE",
           headers: {
@@ -54,9 +55,9 @@ const BookingsSection = ({
           },
         }
       );
-  
+
       const data = await response.json();
-  
+
       if (response.ok) {
         alert("Regular booking deleted successfully.");
         // Optionally, refresh the list or remove the deleted booking from state
@@ -70,7 +71,6 @@ const BookingsSection = ({
     }
   };
 
-
   const formatDateForEngineeringBookings = (date) => {
     if (!date) return null;
     const options = {
@@ -82,41 +82,43 @@ const BookingsSection = ({
     return new Date(date).toLocaleDateString("en-US", options);
   };
 
-// Handle Delete Button Click for Engineering Bookings
-    const handleEngineeringDeleteClick = async (bookingId) => {
-        if (!token) {
-        console.error("No token found. Please sign in.");
-        return;
+  // Handle Delete Button Click for Engineering Bookings
+  const handleEngineeringDeleteClick = async (bookingId) => {
+    if (!token) {
+      console.error("No token found. Please sign in.");
+      return;
+    }
+
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this booking?"
+    );
+    if (!confirmDelete) return;
+
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/engineeringbookings/${bookingId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
-    
-        const confirmDelete = window.confirm("Are you sure you want to delete this booking?");
-        if (!confirmDelete) return;
-    
-        try {
-        const response = await fetch(
-            `http://localhost:5002/api/engineeringbookings/${bookingId}`,
-            {
-            method: "DELETE",
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-            }
-        );
-    
-        const data = await response.json();
-    
-        if (response.ok) {
-            alert("Engineering booking deleted successfully.");
-            // Optionally, refresh the list or remove the deleted booking from state
-            window.location.reload(); // Quick solution for refreshing the data
-        } else {
-            alert(data.error || "Failed to delete engineering booking.");
-        }
-        } catch (error) {
-        console.error("Error deleting engineering booking:", error);
-        alert("An error occurred while trying to delete the booking.");
-        }
-    };
+      );
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("Engineering booking deleted successfully.");
+        // Optionally, refresh the list or remove the deleted booking from state
+        window.location.reload(); // Quick solution for refreshing the data
+      } else {
+        alert(data.error || "Failed to delete engineering booking.");
+      }
+    } catch (error) {
+      console.error("Error deleting engineering booking:", error);
+      alert("An error occurred while trying to delete the booking.");
+    }
+  };
 
   // Helper function to format date for display in the UI
   const formatDate = (date) => {
@@ -181,7 +183,7 @@ const BookingsSection = ({
 
     try {
       const response = await fetch(
-        `http://localhost:5002/api/engineeringbookings/${editingEngineeringBookingId}`,
+        `http://localhost:5000/api/engineeringbookings/${editingEngineeringBookingId}`,
         {
           method: "PATCH",
           headers: {
@@ -304,7 +306,7 @@ const BookingsSection = ({
 
     try {
       const response = await fetch(
-        `http://localhost:5002/api/bookings/${editingBookingId}`,
+        `http://localhost:5000/api/bookings/${editingBookingId}`,
         {
           method: "PATCH",
           headers: {
@@ -633,8 +635,15 @@ const BookingsSection = ({
                         </select>
                       </td>
                       <td>
-                        <button className="SaveMe" onClick={handleSaveClick}>Save</button>
-                        <button className="CancelMe" onClick={handleCancelClick}>Cancel</button>
+                        <button className="SaveMe" onClick={handleSaveClick}>
+                          Save
+                        </button>
+                        <button
+                          className="CancelMe"
+                          onClick={handleCancelClick}
+                        >
+                          Cancel
+                        </button>
                       </td>
                     </>
                   ) : (
@@ -654,10 +663,19 @@ const BookingsSection = ({
                       <td>{booking.rating}</td>
 
                       <td>
-  <button className="EditMe" onClick={() => handleEditClick(booking)}>Edit</button>
-  <button className="DeleteMe" onClick={() => handleRegularDeleteClick(booking.id)}>Delete</button>
-</td>
-
+                        <button
+                          className="EditMe"
+                          onClick={() => handleEditClick(booking)}
+                        >
+                          Edit
+                        </button>
+                        <button
+                          className="DeleteMe"
+                          onClick={() => handleRegularDeleteClick(booking.id)}
+                        >
+                          Delete
+                        </button>
+                      </td>
                     </>
                   )}
                 </tr>
@@ -809,11 +827,14 @@ const BookingsSection = ({
                         </select>
                       </td>
                       <td>
-                        <button className="SaveMe"  onClick={handleSaveEngineeringClick}>
+                        <button
+                          className="SaveMe"
+                          onClick={handleSaveEngineeringClick}
+                        >
                           Save
                         </button>
                         <button
-                        className="CancelMe"
+                          className="CancelMe"
                           onClick={() => setEditingEngineeringBookingId(null)}
                         >
                           Cancel
@@ -834,10 +855,21 @@ const BookingsSection = ({
                       <td>{booking.special_requests ?? "None"}</td>
                       <td>{`${booking.rating ?? "Unrated"} Stars`}</td>
                       <td>
-  <button className="EditMe" onClick={() => handleEngineeringEditClick(booking)}>Edit</button>
-  <button className="DeleteMe"  onClick={() => handleEngineeringDeleteClick(booking.id)}>Delete</button>
-</td>
-
+                        <button
+                          className="EditMe"
+                          onClick={() => handleEngineeringEditClick(booking)}
+                        >
+                          Edit
+                        </button>
+                        <button
+                          className="DeleteMe"
+                          onClick={() =>
+                            handleEngineeringDeleteClick(booking.id)
+                          }
+                        >
+                          Delete
+                        </button>
+                      </td>
                     </>
                   )}
                 </tr>

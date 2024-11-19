@@ -28,7 +28,7 @@ const SendMessage = () => {
 
     // Send message to the backend
     try {
-      const response = await fetch("http://localhost:5002/api/messages", {
+      const response = await fetch("http://localhost:5000/api/messages", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -57,7 +57,9 @@ const SendMessage = () => {
       {success && <p className="success-message">{success}</p>}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label className="labil" htmlFor="name">Name:</label>
+          <label className="labil" htmlFor="name">
+            Name:
+          </label>
           <input
             type="text"
             id="name"
@@ -67,7 +69,9 @@ const SendMessage = () => {
           />
         </div>
         <div className="form-group">
-          <label className="labil" htmlFor="email">Email:</label>
+          <label className="labil" htmlFor="email">
+            Email:
+          </label>
           <input
             type="email"
             id="email"
@@ -77,7 +81,9 @@ const SendMessage = () => {
           />
         </div>
         <div className="form-group">
-          <label className="labil" htmlFor="content">Message:</label>
+          <label className="labil" htmlFor="content">
+            Message:
+          </label>
           <textarea
             id="content"
             value={content}
@@ -90,7 +96,6 @@ const SendMessage = () => {
         </button>
       </form>
       <section className="homepage-contact">
-        
         <h2>Contact Me</h2>
         <p>
           If you have any questions or want to discuss your project, feel free
