@@ -1,5 +1,5 @@
 import React from "react";
-import "./Popup.css"; // Make sure to include CSS for styling
+import "./popup.css"; // Make sure to include CSS for styling
 import { useNavigate } from "react-router-dom";
 
 const Popup = ({ closePopup }) => {
